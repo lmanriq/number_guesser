@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #404041;
+  color: #7d7d7d;
 }
 
 header {
@@ -71,7 +71,8 @@ main {
   border-right: 2px solid #999;
 }
 
-.column2 {
+.column2,
+.btn {
   background-color: #d0d2d3;
 }
 
@@ -96,8 +97,143 @@ fieldset {
 
 fieldset input {
   width: 100%;
+  height: 35px;
 }
-.card_range .flex-parent fieldset,
+.card_range .flex-parent fieldset {
+  width: 35%;
+}
+
 .card_range .flex-parent .btn {
-  width: 30%;
+  width: 18%;
+}
+
+.card_range .btn {
+  padding: 0 10px;
+  height: 35px;
+}
+
+.btn {
+  border-radius: 30px;
+  font-size: 23px;
+  color: white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.card_range .btn {
+  align-self: flex-end;
+}
+
+.card_guess span {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.name-field {
+  width: 65%;
+}
+
+.guess-field {
+  width: 32%;
+}
+
+.guess-buttons {
+  justify-content: space-between;
+}
+
+.guesses {
+  justify-content: space-between;
+  padding: 5px 0 30px 0;
+}
+
+
+.guess-box {
+  width: 50%;
+  text-align: center;
+}
+
+.current-guess {
+  height: 100px;
+}
+
+.left-guess {
+  border-right: 2px solid #cecece;
+}
+
+.guess-box h4,
+.guess-box .current {
+  font-size: 20px;
+}
+
+.guess-hint {
+  font-size: 25px;
+}
+
+.game-card {
+  width: 95%;
+  border: 2px solid #999;
+  margin-left: 20px;
+  text-align: center;
+  background-color: white;
+  height: 30%;
+  padding: 10px;
+}
+ .game-header {
+   border-bottom: 2px solid #cecece;
+   padding-bottom: 10px;
+ }
+
+.winner-name,
+.challenger-vs,
+.winner-statement {
+  text-transform: uppercase;
+}
+
+.challenger-vs {
+  padding: 0 20px;
+}
+
+.winner-name,
+.challenger-vs {
+  font-weight: 700;
+}
+
+.winner-name,
+.winner-statement {
+  font-size: 40px;
+}
+
+.winner-name {
+  margin-top: 20px;
+}
+
+.winner-statement {
+  margin-bottom: 20px;
+}
+
+.guess-number,
+.minute,
+.second {
+  font-weight: 700;
+}
+
+ .game-footer {
+   display: flex;
+   justify-content: space-between;
+   border-top: 2px solid #cecece;
+   padding-top: 10px;
+ }
+
+.time {
+/* I did this to center the time, idk if that's janky */
+  margin-right: 60px;
+}
+
+.game-footer button {
+  background-color: #595959;
+  border-radius: 100%;
+  width: 20px;
+  color: #7d7d7d;
+  font-size: 15px;
 }
