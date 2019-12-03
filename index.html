@@ -3,82 +3,90 @@
   <head>
     <meta charset="utf-8">
     <title>Number Guesser</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
       <h1>Number<span>Guesser</span></h1>
       <h2>Ulitmate Challenger Edition</h2>
     </header>
-
-    <section class="column1">
-      <section class="card">
-        <h3>Set Range</h3>
-
-        <fieldset>
-          <label for="min-range">Min Range</label>
-          <input id="min-range" type="number" name="min-range">
-        </fieldset>
-
-        <fieldset>
-          <label for="max-range">Max Range</label>
-          <input id="max-range" type="number" name="max-range">
-        </fieldset>
-
-        <button id="update-range" class="btn" type="button" name="button">Update</button>
-      </section>
-
-      <section class="card">
-        <p class="sub-title">The Current Range is <span id="range-min">1</span> to <span id="range-max">100</span></p>
-        <h3>Challenger 1</h3>
-        <fieldset>
-          <label for="name1">Name</label>
-          <input id="challenger1" type="text" name="name1">
-        </fieldset>
-        <fieldset>
-          <label for="guess1">Guess</label>
-          <input id="challenger1-guess" type="text" name="guess1">
-        </fieldset>
-        <h3>Challenger 2</h3>
-        <fieldset>
-          <label for="name2">Name</label>
-          <input id="challenger2" type="text" name="name2">
-        </fieldset>
-        <fieldset>
-          <label for="guess2">Guess</label>
-          <input id="challenger2-guess" type="text" name="guess2">
-        </fieldset>
-        <button id="submit-btn" type="button" name="submit-guess">Submit Guess</button>
-        <button id="reset-btn" type="button" name="reset-game">Reset Game</button>
-        <button id="clear-btn" type="button" name="clear-form">Clear Form</button>
-      </section>
-
-      <section class="card">
-        <h3>Latest Guess</h3>
-        <section class="guess-box">
-          <h4 id="challenger1-name">Challenger 1 Name</h4>
-          <p>current guess</p>
-          <p id="" class="current-guess">11</p>
-          <p id="challenger1-hint" class="guess-hint">that't too high</p>
+    <main>
+      <section class="column1">
+        <section class="card card_range">
+          <h3>Set Range</h3>
+          <div class="flex-parent">
+            <fieldset>
+              <label for="min-range">Min Range</label>
+              <input id="min-range" type="number" name="min-range">
+            </fieldset>
+            <fieldset>
+              <label for="max-range">Max Range</label>
+              <input id="max-range" type="number" name="max-range">
+            </fieldset>
+            <button id="update-range" class="btn" type="button" name="button">Update</button>
+          </div>
         </section>
-        <section class="guess-box">
-          <h4 id="challenger2-name">Challenger 2 Name</h4>
-          <p>current guess</p>
-          <p class="current-guess">28</p>
-          <p id="challenger2-hint" class="guess-hint">that't too low</p>
+        <section class="card card_guess">
+          <p class="sub-title">The Current Range is <span id="range-min">1</span> to <span id="range-max">100</span></p>
+          <h3>Challenger 1</h3>
+          <div class="flex-parent guesses">
+            <fieldset class="name-field">
+              <label for="name1">Name</label>
+              <input id="challenger1" type="text" name="name1">
+            </fieldset>
+            <fieldset class="guess-field">
+              <label for="guess1">Guess</label>
+              <input id="challenger1-guess" type="text" name="guess1">
+            </fieldset>
+          </div>
+          <h3>Challenger 2</h3>
+          <div class="flex-parent guesses">
+            <fieldset class="name-field">
+              <label for="name2">Name</label>
+              <input id="challenger2" type="text" name="name2">
+            </fieldset>
+            <fieldset class="guess-field">
+              <label for="guess2">Guess</label>
+              <input id="challenger2-guess" type="text" name="guess2">
+            </fieldset>
+          </div>
+          <div class="flex-parent guess-buttons">
+            <button id="submit-btn" class="btn" type="button" name="submit-guess">Submit Guess</button>
+            <button id="reset-btn" class="btn" type="button" name="reset-game">Reset Game</button>
+            <button id="clear-btn" class="btn" type="button" name="clear-form">Clear Form</button>
+          </div>
         </section>
-      </section>
-    </section>
-
-    <section class="column2">
-      <section class="game-card">
-        <p class="game-header"><span id="challenger1-vs">Challenger 1</span>vs<span id="challenger2-vs">Challenger 2</span></p>
-        <p id="winner">Challenger 2 Name</p>
-        <section class="game-footer">
-          <p><span class="guess-number"></span> Guesses</p>
-          <p><span class="minute">1</span> Minute <span class="second">35</span> second</p>
-          <button type="button" name="remove-box">x</button>
+        <section class="card card_results">
+          <h3>Latest Guess</h3>
+          <div class="flex-parent">
+            <section class="guess-box left-guess">
+              <h4 id="challenger1-name">Challenger 1 Name</h4>
+              <p class="current">current guess</p>
+              <p id="" class="current-guess"></p>
+              <p id="challenger1-hint" class="guess-hint">no guesses yet!</p>
+            </section>
+            <section class="guess-box">
+              <h4 id="challenger2-name">Challenger 2 Name</h4>
+              <p class="current">current guess</p>
+              <p class="current-guess"></p>
+              <p id="challenger2-hint" class="guess-hint">no guesses yet!</p>
+            </section>
+          </div>
         </section>
       </section>
-    </section>
+      <section class="column2">
+        <section class="game-card">
+          <p class="game-header"><span class="challenger-vs" id="challenger1-vs">Challenger 1</span>vs<span class="challenger-vs" id="challenger2-vs">Challenger 2</span></p>
+          <p class="winner-name" id="winner">Challenger 2 Name</p>
+          <p class="winner-statement">Winner</p>
+          <section class="game-footer">
+            <p><span class="guess-number">8</span> Guesses</p>
+            <p class="time"><span class="minute">1</span> Minute <span class="second">35</span> second</p>
+            <button type="button" name="remove-box">x</button>
+          </section>
+        </section>
+      </section>
+    </main>
   </body>
 </html>
