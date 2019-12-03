@@ -71,6 +71,10 @@ main {
   border-right: 2px solid #999;
 }
 
+.column2 {
+  padding:20px 40px;
+}
+
 .column2,
 .btn {
   background-color: #d0d2d3;
@@ -103,26 +107,35 @@ fieldset input {
   width: 35%;
 }
 
-.card_range .flex-parent .btn {
+/* .card_range .flex-parent .btn {
   width: 18%;
-}
+} */
 
 .card_range .btn {
   padding: 0 10px;
   height: 35px;
 }
 
-.btn {
-  border-radius: 30px;
-  font-size: 23px;
-  color: white;
-  padding: 10px 20px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
+  .btn {
+    border-radius: 30px;
+    font-size: 23px;
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
 
 .card_range .btn {
   align-self: flex-end;
+}
+
+.card_guess .sub-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.card_guess h3 {
+  font-size: 20px;
 }
 
 .card_guess span {
@@ -147,18 +160,17 @@ fieldset input {
   padding: 5px 0 30px 0;
 }
 
-
 .guess-box {
   width: 50%;
   text-align: center;
 }
 
-.current-guess {
+.card_results .flex-parent .current-guess {
   height: 100px;
 }
 
-.left-guess {
-  border-right: 2px solid #cecece;
+.card_results .flex-parent .guess-box:last-of-type {
+  border-left: 2px solid #cecece;
 }
 
 .guess-box h4,
@@ -166,18 +178,17 @@ fieldset input {
   font-size: 20px;
 }
 
-.guess-hint {
+.guess-box .guess-hint {
   font-size: 25px;
 }
 
 .game-card {
-  width: 95%;
+  width: 100%;
   border: 2px solid #999;
-  margin-left: 20px;
   text-align: center;
   background-color: white;
-  height: 30%;
-  padding: 10px;
+  padding: 20px;
+  margin-bottom:20px;
 }
  .game-header {
    border-bottom: 2px solid #cecece;
@@ -218,19 +229,32 @@ fieldset input {
   font-weight: 700;
 }
 
- .game-footer {
-   display: flex;
-   justify-content: space-between;
-   border-top: 2px solid #cecece;
-   padding-top: 10px;
- }
-
-.time {
-/* I did this to center the time, idk if that's janky */
-  margin-right: 60px;
+.game-footer {
+ display: flex;
+ /* justify-content: space-between; */
+ border-top: 2px solid #cecece;
+ padding-top: 10px;
 }
 
-.game-footer button {
+.game-footer p,
+.game-footer .time,
+.game-footer .btn-wrap {
+  width:33.3%;
+}
+
+.game-footer p {
+  text-align:left;
+}
+
+.game-footer .time {
+  text-align:center;
+}
+
+.game-footer .btn-wrap {
+  text-align:right;
+}
+
+.game-footer .btn-wrap button {
   background-color: #595959;
   border-radius: 100%;
   width: 20px;
