@@ -1,0 +1,103 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #404041;
+}
+
+header {
+  text-align: center;
+  background-color: #404041;
+  padding: 20px;
+}
+
+h1 {
+  color: #dd1972;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 60px;
+}
+
+h1 span {
+  font-weight: 300;
+}
+
+h2 {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 20px;
+  position:relative;
+  display:inline;
+}
+
+h2:before,
+h2:after {
+  content:'';
+  width:100px;
+  height:2px;
+  background-color:#fff;
+  position:absolute;
+  top:calc(50% - 1px);
+}
+
+h2:before {
+  left:-110px;
+}
+
+h2:after {
+  right:-110px;
+}
+
+main {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.column1,
+.column2 {
+  width: 50%;
+  padding: 20px;
+}
+
+.column1 {
+  background-color: #f7f7f7;
+  border-right: 2px solid #999;
+}
+
+.column2 {
+  background-color: #d0d2d3;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #cecece;
+}
+
+.flex-parent {
+  display: flex;
+}
+
+.card_range .flex-parent {
+  justify-content: space-between;
+}
+
+fieldset {
+  border: 0;
+}
+
+fieldset input {
+  width: 100%;
+}
+.card_range .flex-parent fieldset,
+.card_range .flex-parent .btn {
+  width: 30%;
+}
