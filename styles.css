@@ -107,10 +107,6 @@ fieldset input {
   width: 35%;
 }
 
-/* .card_range .flex-parent .btn {
-  width: 18%;
-} */
-
 .card_range .btn {
   padding: 0 10px;
   height: 35px;
@@ -187,18 +183,14 @@ fieldset input {
   border: 2px solid #999;
   text-align: center;
   background-color: white;
-  padding: 20px;
+  padding: 10px 20px;
   margin-bottom:20px;
-}
- .game-header {
-   border-bottom: 2px solid #cecece;
-   padding-bottom: 10px;
- }
-
-.winner-name,
-.challenger-vs,
-.winner-statement {
   text-transform: uppercase;
+}
+
+.game-header {
+ border-bottom: 2px solid #cecece;
+ padding-bottom: 10px;
 }
 
 .challenger-vs {
@@ -208,6 +200,7 @@ fieldset input {
 .winner-name,
 .challenger-vs {
   font-weight: 700;
+  font-size: 20px;
 }
 
 .winner-name,
@@ -231,33 +224,36 @@ fieldset input {
 
 .game-footer {
  display: flex;
- /* justify-content: space-between; */
+ align-items:center;
  border-top: 2px solid #cecece;
  padding-top: 10px;
-}
-
-.game-footer p,
-.game-footer .time,
-.game-footer .btn-wrap {
-  width:33.3%;
+ font-size:20px;
 }
 
 .game-footer p {
-  text-align:left;
+  width: 20%;
+  text-align: left;
 }
 
 .game-footer .time {
-  text-align:center;
+  width: 60%;
+  text-align: center;
 }
 
 .game-footer .btn-wrap {
-  text-align:right;
+  width: 20%;
+  text-align: right;
 }
 
 .game-footer .btn-wrap button {
   background-color: #595959;
   border-radius: 100%;
-  width: 20px;
+  width: 30px;
+  height: 30px;
+  padding: 7px;
   color: #7d7d7d;
-  font-size: 15px;
+}
+
+.game-footer .btn-wrap button img {
+  width: 100%;
 }
