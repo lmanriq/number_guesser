@@ -10,7 +10,11 @@ window.addEventListener('keyup', enableSetRangeBtn);
 // Enabling set range button
 function enableSetRangeBtn() {
   if (minRange.value !== '' && maxRange.value !== '') {
+    // Enable Button
     updateRangeBtn.classList.add('enable');
+    // Remove potential error class
+    minRange.classList.remove('error');
+    maxRange.classList.remove('error');
   }
 }
 
@@ -22,16 +26,17 @@ function updateRange() {
 
   // Validate & set values
   if (minRange.value !== '' && maxRange.value !== '') {
+    // Set ranges to current ranges section
     currentMin.innerText = minRange.value;
     currentMax.innerText = maxRange.value;
-    updateRangeBtn.classList.add('enable');
   }
 
+  // Add error class for styling inputs
   if (minRange.value === '') {
-    minRange.style.border = "2px solid red";
+    minRange.classList.add('error');
   }
 
   if (maxRange.value === '') {
-    maxRange.style.border = "2px solid red";
+    maxRange.classList.add('error');
   }
 }

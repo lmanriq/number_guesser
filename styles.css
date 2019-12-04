@@ -95,6 +95,10 @@ main {
   justify-content: space-between;
 }
 
+.error {
+  border: 2px solid red;
+}
+
 fieldset {
   border: 0;
 }
