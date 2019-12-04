@@ -257,3 +257,7 @@ fieldset input {
 .game-footer .btn-wrap button img {
   width: 100%;
 }
+
+.enable {
+  background-color: #404041;
+}
