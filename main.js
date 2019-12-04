@@ -25,7 +25,14 @@ function enableClearButton () {
   }
 }
 
-clearButton.addEventListener('click', clearForm);
+function resetButtonClass(button) {
+  button.classList.remove('enable');
+}
+
+clearButton.addEventListener('click', function () {
+  clearForm();
+  resetButtonClass(clearButton);
+});
 
 window.addEventListener('input', function () {
   enableSubmitButton();
@@ -46,4 +53,6 @@ function addLatestGuess() {
 submitButton.addEventListener('click', function () {
   addLatestGuess();
   clearForm();
+  resetButtonClass(submitButton);
+  resetButtonClass(clearButton);
 });
