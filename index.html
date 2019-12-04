@@ -27,7 +27,7 @@
             <button id="update-range" class="btn" type="button" name="button">Update</button>
           </div>
         </section>
-        <section class="card card_guess">
+        <form id="guess-form" class="card card_guess">
           <p class="sub-title">The Current Range is <span id="current-min-range">1</span> to <span id="current-max-range">100</span></p>
           <h3>Challenger 1</h3>
           <div class="flex-parent guesses">
@@ -56,20 +56,20 @@
             <button id="reset-btn" class="btn" type="button" name="reset-game">Reset Game</button>
             <button id="clear-btn" class="btn" type="button" name="clear-form">Clear Form</button>
           </div>
-        </section>
+        </form>
         <section class="card card_results">
           <h3>Latest Guess</h3>
           <div class="flex-parent">
             <section class="guess-box">
               <h4 id="challenger1-name">Challenger 1 Name</h4>
               <p class="current">current guess</p>
-              <p id="" class="current-guess"></p>
+              <p id="challenger1-guess-display" class="current-guess"></p>
               <p id="challenger1-hint" class="guess-hint">no guesses yet!</p>
             </section>
             <section class="guess-box">
               <h4 id="challenger2-name">Challenger 2 Name</h4>
               <p class="current">current guess</p>
-              <p class="current-guess"></p>
+              <p id ="challenger2-guess-display" class="current-guess"></p>
               <p id="challenger2-hint" class="guess-hint">no guesses yet!</p>
             </section>
           </div>

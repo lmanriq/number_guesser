@@ -1,13 +1,83 @@
 // Variables
+var clearButton = document.getElementById('clear-btn');
+var submitButton = document.getElementById('submit-btn');
+var resetButton = document.getElementById('reset-btn')
+var inputs = document.querySelectorAll('.card_guess input');
+var challengerOne = document.getElementById('challenger1');
+var challengerTwo = document.getElementById('challenger2');
+var challenger1Guess = document.getElementById('challenger1-guess');
+var challenger2Guess = document.getElementById('challenger2-guess');
+var guessForm = document.getElementById('guess-form');
 var minRange = document.getElementById('min-range');
 var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
-var challenger1Guess = document.getElementById('challenger1-guess');
-var challenger2Guess = document.getElementById('challenger2-guess');
+
+// We might eventually want to put this into an on load event listener
+disableButtons();
 
 // Event Listeners
 updateRangeBtn.addEventListener('click', updateRange);
 window.addEventListener('keyup', enableSetRangeBtn);
+
+clearButton.addEventListener('click', function () {
+  clearForm();
+  resetButtonClass(clearButton);
+});
+
+window.addEventListener('input', function () {
+  enableSubmitButton();
+  enableClearButton();
+});
+
+submitButton.addEventListener('click', function () {
+  addLatestGuess();
+  clearForm();
+  resetButtonClass(submitButton);
+  resetButtonClass(clearButton);
+});
+
+// Functions
+function clearForm() {
+  guessForm.reset();
+}
+
+function disableButtons() {
+  clearButton.disabled = true;
+  submitButton.disabled = true;
+  resetButton.disabled = true;
+}
+
+function enableSubmitButton () {
+  if (inputs[0].value !== '' && inputs[1].value !== '' && inputs[2].value !== ''
+  && inputs[3].value !== '') {
+    submitButton.classList.add('enable');
+    submitButton.disabled = false;
+  }
+}
+
+function enableClearButton () {
+  if (inputs[0].value !== '' || inputs[1].value || '' || inputs[2].value || ''
+  || inputs[3].value !== '') {
+    clearButton.classList.add('enable');
+    clearButton.disabled = false;
+  }
+}
+
+function resetButtonClass(button) {
+  button.classList.remove('enable');
+  button.disabled = true;
+}
+
+function addLatestGuess() {
+  var latestGuessNameOne = document.getElementById('challenger1-name');
+  var latestGuessNameTwo = document.getElementById('challenger2-name');
+  var latestGuessOne = document.getElementById('challenger1-guess-display');
+  var latestGuessTwo = document.getElementById('challenger2-guess-display');
+  latestGuessNameOne.innerText = challengerOne.value;
+  latestGuessNameTwo.innerText = challengerTwo.value;
+  latestGuessOne.innerText = challenger1Guess.value;
+  latestGuessTwo.innerText = challenger2Guess.value;
+}
 
 // Enabling set range button
 function enableSetRangeBtn() {
