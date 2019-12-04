@@ -29,28 +29,30 @@
         </section>
         <section class="card card_guess">
           <p class="sub-title">The Current Range is <span id="range-min">1</span> to <span id="range-max">100</span></p>
-          <h3>Challenger 1</h3>
-          <div class="flex-parent guesses">
-            <fieldset class="name-field">
-              <label for="name1">Name</label>
-              <input id="challenger1" type="text" name="name1">
-            </fieldset>
-            <fieldset class="guess-field">
-              <label for="guess1">Guess</label>
-              <input id="challenger1-guess" type="text" name="guess1">
-            </fieldset>
-          </div>
-          <h3>Challenger 2</h3>
-          <div class="flex-parent guesses">
-            <fieldset class="name-field">
-              <label for="name2">Name</label>
-              <input id="challenger2" type="text" name="name2">
-            </fieldset>
-            <fieldset class="guess-field">
-              <label for="guess2">Guess</label>
-              <input id="challenger2-guess" type="text" name="guess2">
-            </fieldset>
-          </div>
+          <form id="guess-form">
+            <h3>Challenger 1</h3>
+            <div class="flex-parent guesses">
+              <fieldset class="name-field">
+                <label for="name1">Name</label>
+                <input id="challenger1" type="text" name="name1" required>
+              </fieldset>
+              <fieldset class="guess-field">
+                <label for="guess1">Guess</label>
+                <input id="challenger1-guess" type="text" name="guess1" required>
+              </fieldset>
+            </div>
+            <h3>Challenger 2</h3>
+            <div class="flex-parent guesses">
+              <fieldset class="name-field">
+                <label for="name2">Name</label>
+                <input id="challenger2" type="text" name="name2" required>
+              </fieldset>
+              <fieldset class="guess-field">
+                <label for="guess2">Guess</label>
+                <input id="challenger2-guess" type="text" name="guess2" required>
+              </fieldset>
+            </div>
+        </form>
           <div class="flex-parent guess-buttons">
             <button id="submit-btn" class="btn" type="button" name="submit-guess">Submit Guess</button>
             <button id="reset-btn" class="btn" type="button" name="reset-game">Reset Game</button>

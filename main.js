@@ -5,6 +5,7 @@ var challengerOne = document.getElementById('challenger1');
 var challengerTwo = document.getElementById('challenger2');
 var guessOne = document.getElementById('challenger1-guess');
 var guessTwo = document.getElementById('challenger2-guess');
+var guessForm = document.getElementById('guess-form');
 
 function clearForm() {
   for (var i = 0; i < inputs.length; i++) {
@@ -40,8 +41,11 @@ function addLatestGuess() {
   var latestGuessTwo = document.getElementById('challenger2-guess-display');
   latestGuessNameOne.innerText = challengerOne.value;
   latestGuessNameTwo.innerText = challengerTwo.value;
-  latestGuessOne.innerText = guessOne.value
-  latestGuessTwo.innerText = guessTwo.value
+  latestGuessOne.innerText = guessOne.value;
+  latestGuessTwo.innerText = guessTwo.value;
 }
 
-submitButton.addEventListener('click', addLatestGuess);
+submitButton.addEventListener('click', function () {
+  addLatestGuess();
+  guessForm.reset();
+});
