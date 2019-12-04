@@ -8,9 +8,7 @@ var guessTwo = document.getElementById('challenger2-guess');
 var guessForm = document.getElementById('guess-form');
 
 function clearForm() {
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].value = '';
-  }
+  guessForm.reset();
 }
 
 function enableSubmitButton () {
@@ -47,5 +45,5 @@ function addLatestGuess() {
 
 submitButton.addEventListener('click', function () {
   addLatestGuess();
-  guessForm.reset();
+  clearForm();
 });
