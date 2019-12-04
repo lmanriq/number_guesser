@@ -261,3 +261,9 @@ fieldset input {
 .enable {
   background-color: #404041;
 }
+
+.current-guess {
+  color: #dd1972;
+  font-size: 80px;
+  font-weight: 800;
+}

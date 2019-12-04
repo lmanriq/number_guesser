@@ -36,8 +36,8 @@ window.addEventListener('input', function () {
 function addLatestGuess() {
   var latestGuessNameOne = document.getElementById('challenger1-name');
   var latestGuessNameTwo = document.getElementById('challenger2-name');
-  var latestGuessOne = document.getElementById('challenger1-guess');
-  var latestGuessTwo = document.getElementById('challenger2-guess');
+  var latestGuessOne = document.getElementById('challenger1-guess-display');
+  var latestGuessTwo = document.getElementById('challenger2-guess-display');
   latestGuessNameOne.innerText = challengerOne.value;
   latestGuessNameTwo.innerText = challengerTwo.value;
   latestGuessOne.innerText = guessOne.value
