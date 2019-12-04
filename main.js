@@ -1,5 +1,6 @@
 var clearButton = document.getElementById('clear-btn');
 var submitButton = document.getElementById('submit-btn');
+var resetButton = document.getElementById('reset-btn')
 var inputs = document.querySelectorAll('.card_guess input');
 var challengerOne = document.getElementById('challenger1');
 var challengerTwo = document.getElementById('challenger2');
@@ -11,10 +12,19 @@ function clearForm() {
   guessForm.reset();
 }
 
+disableButtons();
+
+function disableButtons() {
+  clearButton.disabled = true;
+  submitButton.disabled = true;
+  resetButton.disabled = true;
+}
+
 function enableSubmitButton () {
   if (inputs[0].value !== '' && inputs[1].value !== '' && inputs[2].value !== ''
   && inputs[3].value !== '') {
     submitButton.classList.add('enable');
+    submitButton.disabled = false;
   }
 }
 
@@ -22,11 +32,13 @@ function enableClearButton () {
   if (inputs[0].value !== '' || inputs[1].value || '' || inputs[2].value || ''
   || inputs[3].value !== '') {
     clearButton.classList.add('enable');
+    clearButton.disabled = false;
   }
 }
 
 function resetButtonClass(button) {
   button.classList.remove('enable');
+  button.disabled = true;
 }
 
 clearButton.addEventListener('click', function () {
