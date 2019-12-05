@@ -11,6 +11,7 @@ var guessForm = document.getElementById('guess-form');
 var minRange = document.getElementById('min-range');
 var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
+var gameCardContainer = document.getElementById('wonGamesCol');
 var randomNumber = null;
 var alertZone = document.getElementById('alert-zone');
 var maxFieldset = document.getElementById('max-field');
@@ -48,7 +49,8 @@ submitButton.addEventListener('click', function () {
   resetButtonClass(clearButton);
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
-  clearForm();
+  // clearForm();
+  gameWin();
 });
 
 // Functions
@@ -169,5 +171,42 @@ function generateGuessHint(currentGuess, hint) {
     hint.innerText = "that's too low";
   } else if (currentGuess.value == randomNumber) {
     hint.innerText = "BOOM!";
+  }
+}
+
+function gameWin() {
+  var gameWinner = null;
+  // If challenger 1 wins..
+  if (challenger1Guess.value == randomNumber) {
+    console.log('Challenger 1 wins!');
+    gameWinner = challengerOne.value;
+    // Call function to populate winning card
+    addWinCard();
+  }
+  // If challenger 1 wins..
+  if (challenger2Guess.value == randomNumber) {
+    console.log('Challenger 2 wins!');
+    gameWinner = challengerTwo.value;
+    // Call function to populate winning card
+    addWinCard();
+  }
+  console.log(`And the winner is... ${gameWinner}!!!`);
+
+  // Create game winning card with players info
+  function addWinCard() {
+    var winCardHTML = `<section class="game-card">
+      <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
+      <p class="winner-name">${gameWinner}</p>
+      <p class="winner-statement">Winner</p>
+      <section class="game-footer">
+        <p><span class="guess-number">8</span> Guesses</p>
+        <p class="time"><span class="minute">1</span> Minute <span class="second">35</span> second</p>
+        <div class="btn-wrap">
+          <button type="button" name="remove-box"><img src="assets/close.svg" alt="Close game winning card"></button>
+        </div>
+      </section>
+    </section>`;
+    // Insert win card into container
+    gameCardContainer.insertAdjacentHTML('beforeend', winCardHTML);
   }
 }
