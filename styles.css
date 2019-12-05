@@ -96,7 +96,7 @@ main {
 }
 
 .error {
-  border: 2px solid red;
+  border: 2px solid #dd1972;
 }
 
 fieldset {

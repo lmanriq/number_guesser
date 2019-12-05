@@ -124,6 +124,10 @@ function updateRange() {
   if (maxRange.value === '') {
     maxRange.classList.add('error');
   }
+
+  if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
+    minRange.classList.add('alert');
+  }
 }
 
 var currentMin = document.getElementById('current-min-range');
