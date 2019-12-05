@@ -126,11 +126,16 @@ function updateRange() {
   }
 
   if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
-    minRange.classList.add('error');
-    minRange.classList.add('alert');
+    maxFieldset.innerHTML = maxFieldset.innerHTML + alertHTML;
+    maxRange.classList.add('error');
+    alertMsg.classList.add('alert');
   }
 }
 
+var maxFieldset = document.getElementById('max-field');
+var alertMsg = document.getElementById('alert-msg');
+var alertHTML = `<p id="alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
+alert icon">Must be less than min</p>`
 var currentMin = document.getElementById('current-min-range');
 var currentMax = document.getElementById('current-max-range');
 var challenger1Hint = document.getElementById('challenger1-hint');
