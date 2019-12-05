@@ -165,10 +165,13 @@ function gameWin() {
   }
   console.log(`And the winner is... ${gameWinner}!!!`);
 
+  // Call function to populate winning card
+  addWinCard();
+
   // Create game winning card with players info
   function addWinCard() {
     var winCard = `<section class="game-card">
-      <p class="game-header"><span class="challenger-vs">${challengerOne}</span>vs<span class="challenger-vs">${challengerTwo}</span></p>
+      <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
       <p class="winner-name">${gameWinner}</p>
       <p class="winner-statement">Winner</p>
       <section class="game-footer">
@@ -179,9 +182,7 @@ function gameWin() {
         </div>
       </section>
     </section>`;
-    // gameCardContainer.insertAdjacentHTML('beforEnd', winCard);
+    // Insert win card into container
+    gameCardContainer.insertAdjacentHTML('beforeend', winCard);
   }
-  // Call function to populate winning card
-  addWinCard();
-  console.log(winCard);
 }
