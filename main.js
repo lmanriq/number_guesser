@@ -11,12 +11,17 @@ var guessForm = document.getElementById('guess-form');
 var minRange = document.getElementById('min-range');
 var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
+var randomNumber = null;
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
-
+makeInitialRandomNumber();
 // Event Listeners
-updateRangeBtn.addEventListener('click', updateRange);
+updateRangeBtn.addEventListener('click', function () {
+  updateRange();
+  makeRandomNumber();
+});
+
 window.addEventListener('keyup', enableSetRangeBtn);
 
 clearButton.addEventListener('click', function () {
@@ -31,9 +36,11 @@ window.addEventListener('input', function () {
 
 submitButton.addEventListener('click', function () {
   addLatestGuess();
-  clearForm();
   resetButtonClass(submitButton);
   resetButtonClass(clearButton);
+  generateGuessHint(challenger1Guess, challenger1Hint);
+  generateGuessHint(challenger2Guess, challenger2Hint);
+  clearForm();
 });
 
 // Functions
@@ -116,5 +123,28 @@ function updateRange() {
 
   if (maxRange.value === '') {
     maxRange.classList.add('error');
+  }
+}
+
+var currentMin = document.getElementById('current-min-range');
+var currentMax = document.getElementById('current-max-range');
+var challenger1Hint = document.getElementById('challenger1-hint');
+var challenger2Hint = document.getElementById('challenger2-hint');
+
+function makeRandomNumber() {
+  randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) - parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));
+}
+
+function makeInitialRandomNumber() {
+  randomNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+}
+
+function generateGuessHint(currentGuess, hint) {
+  if (currentGuess.value > randomNumber) {
+    hint.innerText = "that's too high";
+  } else if (currentGuess.value < randomNumber) {
+    hint.innerText = "that's too low";
+  } else if (currentGuess.value == randomNumber) {
+    hint.innerText = "BOOM!";
   }
 }
