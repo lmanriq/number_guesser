@@ -21,6 +21,7 @@ var currentMin = document.getElementById('current-min-range');
 var currentMax = document.getElementById('current-max-range');
 var challenger1Hint = document.getElementById('challenger1-hint');
 var challenger2Hint = document.getElementById('challenger2-hint');
+var guessCounter = 0;
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
@@ -50,6 +51,7 @@ submitButton.addEventListener('click', function () {
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
   // clearForm();
+  increaseGuessCount();
   gameWin();
 });
 
@@ -176,10 +178,12 @@ function generateGuessHint(currentGuess, hint) {
 
 function gameWin() {
   var gameWinner = null;
+  var totalGuesses = null;
   // If challenger 1 wins..
   if (challenger1Guess.value == randomNumber) {
     console.log('Challenger 1 wins!');
     gameWinner = challengerOne.value;
+    totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
   }
@@ -187,6 +191,7 @@ function gameWin() {
   if (challenger2Guess.value == randomNumber) {
     console.log('Challenger 2 wins!');
     gameWinner = challengerTwo.value;
+    totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
   }
@@ -199,7 +204,7 @@ function gameWin() {
       <p class="winner-name">${gameWinner}</p>
       <p class="winner-statement">Winner</p>
       <section class="game-footer">
-        <p><span class="guess-number">8</span> Guesses</p>
+        <p><span class="guess-number">${totalGuesses}</span> Guesses</p>
         <p class="time"><span class="minute">1</span> Minute <span class="second">35</span> second</p>
         <div class="btn-wrap">
           <button type="button" name="remove-box"><img src="assets/close.svg" alt="Close game winning card"></button>
@@ -209,4 +214,8 @@ function gameWin() {
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('beforeend', winCardHTML);
   }
+}
+
+function increaseGuessCount() {
+  guessCounter += 2;
 }
