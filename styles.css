@@ -99,6 +99,16 @@ main {
   border: 2px solid #dd1972;
 }
 
+.alert {
+  color: #dd1972;
+}
+
+.alert img {
+  height: 10px;
+  font-size: 13px;
+  padding-right: 5px;
+}
+
 fieldset {
   border: 0;
 }

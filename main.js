@@ -126,6 +126,7 @@ function updateRange() {
   }
 
   if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
+    minRange.classList.add('error');
     minRange.classList.add('alert');
   }
 }
