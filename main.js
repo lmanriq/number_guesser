@@ -151,10 +151,14 @@ function generateGuessHint(currentGuess, hint) {
 }
 
 function gameWin() {
+  var gameWinner = null;
   if (challenger1Guess.value == randomNumber) {
-    console.log('Challenger 1 wins!');
+    // console.log('Challenger 1 wins!');
+    gameWinner = challengerOne.value;
   }
   if (challenger2Guess.value == randomNumber) {
-    console.log('Challenger 2 wins!');
+    // console.log('Challenger 2 wins!');
+    gameWinner = challengerTwo.value;
   }
+  console.log(`And the winner is... ${gameWinner}!!!`);
 }
