@@ -13,6 +13,14 @@ var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
 var gameCardContainer = document.getElementById('wonGamesCol');
 var randomNumber = null;
+var alertZone = document.getElementById('alert-zone');
+var maxFieldset = document.getElementById('max-field');
+var alertHTML = `<p id="alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
+alert icon">Must be greater than min</p>`
+var currentMin = document.getElementById('current-min-range');
+var currentMax = document.getElementById('current-max-range');
+var challenger1Hint = document.getElementById('challenger1-hint');
+var challenger2Hint = document.getElementById('challenger2-hint');
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
@@ -116,6 +124,7 @@ function updateRange() {
     challenger2Guess.setAttribute('min', minRange.value);
     challenger1Guess.setAttribute('max', maxRange.value);
     challenger2Guess.setAttribute('max', maxRange.value);
+
   }
 
   // Add error class for styling inputs
@@ -126,12 +135,26 @@ function updateRange() {
   if (maxRange.value === '') {
     maxRange.classList.add('error');
   }
+  testIfMaxIsBigger();
+
+  // var node = document.createElement("LI");                 // Create a <li> node
+  // var textnode = document.createTextNode("Water");         // Create a text node
+  // node.appendChild(textnode);                              // Append the text to <li>
+  // document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"
+
 }
 
-var currentMin = document.getElementById('current-min-range');
-var currentMax = document.getElementById('current-max-range');
-var challenger1Hint = document.getElementById('challenger1-hint');
-var challenger2Hint = document.getElementById('challenger2-hint');
+function testIfMaxIsBigger() {
+  if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
+    alertZone.innerHTML = alertHTML;
+    var alertMsg = document.getElementById('alert-msg');
+    maxRange.classList.add('error');
+    alertMsg.classList.add('alert');
+  } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
+    console.log('Max is bigger than min');
+    alertZone.innerHTML = '';
+  }
+}
 
 function makeRandomNumber() {
   randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) - parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));

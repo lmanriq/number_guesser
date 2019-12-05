@@ -96,7 +96,16 @@ main {
 }
 
 .error {
-  border: 2px solid red;
+  border: 2px solid #dd1972;
+}
+
+.alert {
+  color: #dd1972;
+}
+
+.alert img {
+  height: 13px;
+  padding-right: 5px;
 }
 
 fieldset {
