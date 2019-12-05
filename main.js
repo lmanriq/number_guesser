@@ -40,7 +40,8 @@ submitButton.addEventListener('click', function () {
   resetButtonClass(clearButton);
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
-  clearForm();
+  // clearForm();
+  gameWin();
 });
 
 // Functions
@@ -146,5 +147,14 @@ function generateGuessHint(currentGuess, hint) {
     hint.innerText = "that's too low";
   } else if (currentGuess.value == randomNumber) {
     hint.innerText = "BOOM!";
+  }
+}
+
+function gameWin() {
+  if (challenger1Guess.value == randomNumber) {
+    console.log('Challenger 1 wins!');
+  }
+  if (challenger2Guess.value == randomNumber) {
+    console.log('Challenger 2 wins!');
   }
 }
