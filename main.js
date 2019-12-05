@@ -21,6 +21,7 @@ var currentMin = document.getElementById('current-min-range');
 var currentMax = document.getElementById('current-max-range');
 var challenger1Hint = document.getElementById('challenger1-hint');
 var challenger2Hint = document.getElementById('challenger2-hint');
+var guessCounter = 0;
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
@@ -49,7 +50,7 @@ submitButton.addEventListener('click', function () {
   resetButtonClass(clearButton);
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
-  // clearForm();
+  increaseGuessCount();
   gameWin();
 });
 
@@ -124,7 +125,6 @@ function updateRange() {
     challenger2Guess.setAttribute('min', minRange.value);
     challenger1Guess.setAttribute('max', maxRange.value);
     challenger2Guess.setAttribute('max', maxRange.value);
-
   }
 
   // Add error class for styling inputs
@@ -135,13 +135,8 @@ function updateRange() {
   if (maxRange.value === '') {
     maxRange.classList.add('error');
   }
+
   testIfMaxIsBigger();
-
-  // var node = document.createElement("LI");                 // Create a <li> node
-  // var textnode = document.createTextNode("Water");         // Create a text node
-  // node.appendChild(textnode);                              // Append the text to <li>
-  // document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"
-
 }
 
 function testIfMaxIsBigger() {
@@ -158,6 +153,8 @@ function testIfMaxIsBigger() {
 
 function makeRandomNumber() {
   randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) - parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));
+  // Make random number should "restart" the game
+  resetGuessCounter();
 }
 
 function makeInitialRandomNumber() {
@@ -176,19 +173,24 @@ function generateGuessHint(currentGuess, hint) {
 
 function gameWin() {
   var gameWinner = null;
+  var totalGuesses = null;
   // If challenger 1 wins..
   if (challenger1Guess.value == randomNumber) {
     console.log('Challenger 1 wins!');
     gameWinner = challengerOne.value;
+    totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
+    resetGuessCounter();
   }
   // If challenger 1 wins..
   if (challenger2Guess.value == randomNumber) {
     console.log('Challenger 2 wins!');
     gameWinner = challengerTwo.value;
+    totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
+    resetGuessCounter();
   }
   console.log(`And the winner is... ${gameWinner}!!!`);
 
@@ -199,7 +201,7 @@ function gameWin() {
       <p class="winner-name">${gameWinner}</p>
       <p class="winner-statement">Winner</p>
       <section class="game-footer">
-        <p><span class="guess-number">8</span> Guesses</p>
+        <p><span class="guess-number">${totalGuesses}</span> Guesses</p>
         <p class="time"><span class="minute">1</span> Minute <span class="second">35</span> second</p>
         <div class="btn-wrap">
           <button type="button" name="remove-box"><img src="assets/close.svg" alt="Close game winning card"></button>
@@ -209,4 +211,12 @@ function gameWin() {
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('beforeend', winCardHTML);
   }
+}
+
+function increaseGuessCount() {
+  guessCounter += 2;
+}
+
+function resetGuessCounter() {
+  guessCounter = 0;
 }
