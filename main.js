@@ -50,7 +50,6 @@ submitButton.addEventListener('click', function () {
   resetButtonClass(clearButton);
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
-  // clearForm();
   increaseGuessCount();
   gameWin();
 });
@@ -126,7 +125,6 @@ function updateRange() {
     challenger2Guess.setAttribute('min', minRange.value);
     challenger1Guess.setAttribute('max', maxRange.value);
     challenger2Guess.setAttribute('max', maxRange.value);
-
   }
 
   // Add error class for styling inputs
@@ -137,13 +135,8 @@ function updateRange() {
   if (maxRange.value === '') {
     maxRange.classList.add('error');
   }
+
   testIfMaxIsBigger();
-
-  // var node = document.createElement("LI");                 // Create a <li> node
-  // var textnode = document.createTextNode("Water");         // Create a text node
-  // node.appendChild(textnode);                              // Append the text to <li>
-  // document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"
-
 }
 
 function testIfMaxIsBigger() {
@@ -160,6 +153,8 @@ function testIfMaxIsBigger() {
 
 function makeRandomNumber() {
   randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) - parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));
+  // Make random number should "restart" the game
+  resetGuessCounter();
 }
 
 function makeInitialRandomNumber() {
@@ -186,6 +181,7 @@ function gameWin() {
     totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
+    resetGuessCounter();
   }
   // If challenger 1 wins..
   if (challenger2Guess.value == randomNumber) {
@@ -194,6 +190,7 @@ function gameWin() {
     totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
+    resetGuessCounter();
   }
   console.log(`And the winner is... ${gameWinner}!!!`);
 
@@ -218,4 +215,8 @@ function gameWin() {
 
 function increaseGuessCount() {
   guessCounter += 2;
+}
+
+function resetGuessCounter() {
+  guessCounter = 0;
 }
