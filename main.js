@@ -157,16 +157,17 @@ function gameWin() {
   if (challenger1Guess.value == randomNumber) {
     console.log('Challenger 1 wins!');
     gameWinner = challengerOne.value;
+    // Call function to populate winning card
+    addWinCard();
   }
   // If challenger 1 wins..
   if (challenger2Guess.value == randomNumber) {
     console.log('Challenger 2 wins!');
     gameWinner = challengerTwo.value;
+    // Call function to populate winning card
+    addWinCard();
   }
   console.log(`And the winner is... ${gameWinner}!!!`);
-
-  // Call function to populate winning card
-  addWinCard();
 
   // Create game winning card with players info
   function addWinCard() {
