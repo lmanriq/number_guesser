@@ -171,7 +171,7 @@ function gameWin() {
 
   // Create game winning card with players info
   function addWinCard() {
-    var winCard = `<section class="game-card">
+    var winCardHTML = `<section class="game-card">
       <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
       <p class="winner-name">${gameWinner}</p>
       <p class="winner-statement">Winner</p>
@@ -184,6 +184,6 @@ function gameWin() {
       </section>
     </section>`;
     // Insert win card into container
-    gameCardContainer.insertAdjacentHTML('beforeend', winCard);
+    gameCardContainer.insertAdjacentHTML('beforeend', winCardHTML);
   }
 }
