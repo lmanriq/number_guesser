@@ -49,6 +49,7 @@ clearButton.addEventListener('click', function () {
 
 window.addEventListener('input', function () {
   enableSubmitButton();
+  disableSubmitButton();
   enableClearButton();
   displayOutsideRangeError();
 });
@@ -172,23 +173,17 @@ function updateRange() {
   if (maxRange.value === '') {
     maxRange.classList.add('error');
   }
-  //
-  // testIfMaxIsBigger();
+  enableSubmitButton();
 }
 
-
-// TESTING
 function displayOutsideRangeError() {
-  if (parseInt(challenger1Guess.value) > parseInt(currentMax.innerText)) {
+  // Put parseInt values as variables to shorten these lines
+  if (parseInt(challenger1Guess.value) > parseInt(currentMax.innerText) ||
+  parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[0].innerHTML = rangeAlertHTML;
     challenger1Guess.classList.add('error');
-  } else if (parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
-    rangeAlerts[0].innerHTML = rangeAlertHTML;
-    challenger1Guess.classList.add('error');
-  } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText)) {
-    rangeAlerts[1].innerHTML = rangeAlertHTML;
-    challenger2Guess.classList.add('error');
-  } else if (parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
+  } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
+  parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[1].innerHTML = rangeAlertHTML;
     challenger2Guess.classList.add('error');
   } else {
@@ -199,7 +194,6 @@ function displayOutsideRangeError() {
   }
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
-// TESTING
 
 function testIfMaxIsBigger() {
   if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
@@ -208,6 +202,7 @@ function testIfMaxIsBigger() {
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
     updateRangeBtn.classList.remove('enable');
+    disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
     console.log('Max is bigger than min');
     alertZone.innerHTML = '';
