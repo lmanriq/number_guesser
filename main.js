@@ -195,7 +195,7 @@ function displayOutsideRangeError() {
     rangeAlerts[0].innerHTML = '';
     rangeAlerts[1].innerHTML = '';
     challenger1Guess.classList.remove('error');
-    challenger1Guess.classList.remove('error');
+    challenger2Guess.classList.remove('error');
   }
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
