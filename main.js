@@ -176,26 +176,23 @@ function updateRange() {
 
 // TESTING
 function displayOutsideRangeError() {
-  console.log(challenger1Guess.value);
-  console.log(typeof challenger1Guess.value);
-  console.log(currentMin.innerText);
-  console.log(typeof currentMin);
   if (parseInt(challenger1Guess.value) > parseInt(currentMax.innerText)) {
     rangeAlerts[0].innerHTML = rangeAlertHTML;
-    console.log(1);
+    challenger1Guess.classList.add('error');
   } else if (parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[0].innerHTML = rangeAlertHTML;
-    console.log(2);
+    challenger1Guess.classList.add('error');
   } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText)) {
     rangeAlerts[1].innerHTML = rangeAlertHTML;
-    console.log(3);
+    challenger2Guess.classList.add('error');
   } else if (parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[1].innerHTML = rangeAlertHTML;
-    console.log(5);
+    challenger2Guess.classList.add('error');
   } else {
     rangeAlerts[0].innerHTML = '';
     rangeAlerts[1].innerHTML = '';
-    console.log(4);
+    challenger1Guess.classList.remove('error');
+    challenger1Guess.classList.remove('error');
   }
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
