@@ -174,25 +174,19 @@ function generateGuessHint(currentGuess, hint) {
 function gameWin() {
   var gameWinner = null;
   var totalGuesses = null;
-  // If challenger 1 wins..
-  if (challenger1Guess.value == randomNumber) {
-    console.log('Challenger 1 wins!');
-    gameWinner = challengerOne.value;
-    totalGuesses = guessCounter;
-    // Call function to populate winning card
-    addWinCard();
-    resetGuessCounter();
+
+  determineWinner(challengerOne, challenger1Guess);
+  determineWinner(challengerTwo, challenger2Guess);
+
+  function determineWinner(winnerName, winnerGuess) {
+    if (winnerGuess.value == randomNumber) {
+      gameWinner = winnerName.value;
+      totalGuesses = guessCounter;
+      // Call function to populate winning card
+      addWinCard();
+      newGame();
+    }
   }
-  // If challenger 1 wins..
-  if (challenger2Guess.value == randomNumber) {
-    console.log('Challenger 2 wins!');
-    gameWinner = challengerTwo.value;
-    totalGuesses = guessCounter;
-    // Call function to populate winning card
-    addWinCard();
-    resetGuessCounter();
-  }
-  console.log(`And the winner is... ${gameWinner}!!!`);
 
   // Create game winning card with players info
   function addWinCard() {
@@ -209,7 +203,7 @@ function gameWin() {
       </section>
     </section>`;
     // Insert win card into container
-    gameCardContainer.insertAdjacentHTML('beforeend', winCardHTML);
+    gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   }
 }
 
@@ -219,4 +213,10 @@ function increaseGuessCount() {
 
 function resetGuessCounter() {
   guessCounter = 0;
+}
+
+function newGame() {
+  clearForm();
+  resetGuessCounter();
+  makeRandomNumber();
 }
