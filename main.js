@@ -30,7 +30,6 @@ var withinRange = false;
 // We might eventually want to put this into an on load event listener
 disableButtons();
 makeInitialRandomNumber();
-testIfMaxIsBigger();
 // Event Listeners
 updateRangeBtn.addEventListener('click', function () {
   // updateRange();
@@ -38,7 +37,10 @@ updateRangeBtn.addEventListener('click', function () {
   makeRandomNumber();
 });
 
-window.addEventListener('keyup', enableSetRangeBtn);
+window.addEventListener('keyup', function () {
+  enableSetRangeBtn();
+  testIfMaxIsBigger();
+});
 
 clearButton.addEventListener('click', function () {
   clearForm();
@@ -77,6 +79,7 @@ function disableButtons() {
   clearButton.disabled = true;
   submitButton.disabled = true;
   resetButton.disabled = true;
+  updateRangeBtn.disabled = true;
 }
 
 function enableSubmitButton () {
@@ -204,9 +207,11 @@ function testIfMaxIsBigger() {
     var alertMsg = document.getElementById('alert-msg');
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
+    updateRangeBtn.classList.remove('enable');
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
     console.log('Max is bigger than min');
     alertZone.innerHTML = '';
+    updateRangeBtn.disabled = false;
     updateRange();
   }
 }
