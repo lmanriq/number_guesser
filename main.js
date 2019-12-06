@@ -71,6 +71,16 @@ function enableSubmitButton () {
     submitButton.classList.add('enable');
     submitButton.disabled = false;
   }
+
+  resetButton.classList.add('enable');
+  resetButton.disabled = false;
+}
+
+function disableSubmitButton () {
+  if (inputs[0].value == '' || inputs[1].value == '' || inputs[2].value == ''
+  || inputs[3].value == '') {
+    resetButtonClass(submitButton)
+  }
 }
 
 function enableClearButton () {
@@ -219,4 +229,10 @@ function newGame() {
   clearForm();
   resetGuessCounter();
   makeRandomNumber();
+  resetDefaultRange();
 }
+
+function resetDefaultRange() {
+  currentMin.innerText = 1;
+  currentMax.innerText = 100;
+};
