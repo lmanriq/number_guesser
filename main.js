@@ -181,7 +181,7 @@ function gameWin() {
     totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
-    resetGuessCounter();
+    newGame();
   }
   // If challenger 1 wins..
   if (challenger2Guess.value == randomNumber) {
@@ -190,7 +190,7 @@ function gameWin() {
     totalGuesses = guessCounter;
     // Call function to populate winning card
     addWinCard();
-    resetGuessCounter();
+    newGame();
   }
   console.log(`And the winner is... ${gameWinner}!!!`);
 
@@ -219,4 +219,10 @@ function increaseGuessCount() {
 
 function resetGuessCounter() {
   guessCounter = 0;
+}
+
+function newGame() {
+  clearForm();
+  resetGuessCounter();
+  makeRandomNumber();
 }
