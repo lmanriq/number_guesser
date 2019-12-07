@@ -263,12 +263,12 @@ fieldset input {
   border-radius: 100%;
   width: 30px;
   height: 30px;
-  padding: 7px;
   color: #7d7d7d;
 }
 
 .game-footer .btn-wrap button img {
   width: 100%;
+  padding: 7px;
 }
 
 .enable {

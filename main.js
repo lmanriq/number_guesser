@@ -26,6 +26,8 @@ var challenger1Hint = document.getElementById('challenger1-hint');
 var challenger2Hint = document.getElementById('challenger2-hint');
 var guessCounter = 0;
 var withinRange = false;
+var deleteWinCard = document.getElementById('deleteWinCard');
+// var winCardCounter = 0;
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
@@ -70,6 +72,8 @@ submitButton.addEventListener('click', function () {
   increaseGuessCount();
   gameWin();
 });
+
+gameCardContainer.addEventListener('click', removeWinCard);
 
 // Functions
 function clearForm() {
@@ -260,10 +264,11 @@ function gameWin() {
         <p><span class="guess-number">${totalGuesses}</span> Guesses</p>
         <p class="time"><span class="minute">1</span> Minute <span class="second">35</span> second</p>
         <div class="btn-wrap">
-          <button type="button" name="remove-box"><img src="assets/close.svg" alt="Close game winning card"></button>
+          <button type="button" name="remove-box"><img class="deleteWinCard" src="assets/close.svg" alt="Close game winning card"></button>
         </div>
       </section>
     </section>`;
+    // winCardCounter++;
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   }
@@ -287,4 +292,13 @@ function newGame() {
 function resetDefaultRange() {
   currentMin.innerText = 1;
   currentMax.innerText = 100;
-};
+}
+
+function removeWinCard(event) {
+  var clickedCard = null;
+  if (event.target.classList == 'deleteWinCard') {
+    clickedCard = event.target.closest('.game-card');
+    console.log(clickedCard);
+    clickedCard.parentNode.removeChild(clickedCard);
+  }
+}
