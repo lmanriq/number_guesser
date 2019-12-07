@@ -195,10 +195,12 @@ function displayOutsideRangeError() {
   parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[0].innerHTML = rangeAlertHTML;
     challenger1Guess.classList.add('error');
+    resetButtonClass(submitButton);
   } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
   parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[1].innerHTML = rangeAlertHTML;
     challenger2Guess.classList.add('error');
+    resetButtonClass(submitButton);
   } else {
     rangeAlerts[0].innerHTML = '';
     rangeAlerts[1].innerHTML = '';
