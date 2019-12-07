@@ -261,6 +261,7 @@ function gameWin() {
       addWinCard();
       newGame();
     }
+    resetButtonClass(resetButton);
   }
 
   // Create game winning card with players info
