@@ -8,6 +8,7 @@ var challengerTwo = document.getElementById('challenger2');
 var challenger1Guess = document.getElementById('challenger1-guess');
 var challenger2Guess = document.getElementById('challenger2-guess');
 var guessForm = document.getElementById('guess-form');
+var rangeForm = document.getElementById('range-form');
 var minRange = document.getElementById('min-range');
 var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
@@ -43,8 +44,11 @@ window.addEventListener('keyup', function () {
 });
 
 clearButton.addEventListener('click', function () {
-  clearForm();
+  clearForm(guessForm);
+  clearForm(rangeForm);
   resetButtonClass(clearButton);
+  resetButtonClass(submitButton);
+  resetButtonClass(updateRangeBtn);
 });
 
 window.addEventListener('input', function () {
@@ -74,8 +78,8 @@ submitButton.addEventListener('click', function () {
 });
 
 // Functions
-function clearForm() {
-  guessForm.reset();
+function clearForm(form) {
+  form.reset();
 }
 
 function disableButtons() {
@@ -279,7 +283,8 @@ function resetGuessCounter() {
 }
 
 function newGame() {
-  clearForm();
+  clearForm(guessForm);
+  // clearForm(guessForm);
   resetGuessCounter();
   makeRandomNumber();
   resetDefaultRange();
