@@ -17,22 +17,30 @@ var alertZone = document.getElementById('alert-zone');
 var maxFieldset = document.getElementById('max-field');
 var alertHTML = `<p id="alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
 alert icon">Must be greater than min</p>`
+var rangeAlertHTML = `<p id="range-alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
+alert icon">Must be within range</p>`
+var rangeAlerts = document.querySelectorAll('.range-alert');
 var currentMin = document.getElementById('current-min-range');
 var currentMax = document.getElementById('current-max-range');
 var challenger1Hint = document.getElementById('challenger1-hint');
 var challenger2Hint = document.getElementById('challenger2-hint');
 var guessCounter = 0;
+var withinRange = false;
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
 makeInitialRandomNumber();
 // Event Listeners
 updateRangeBtn.addEventListener('click', function () {
-  updateRange();
+  // updateRange();
+  testIfMaxIsBigger();
   makeRandomNumber();
 });
 
-window.addEventListener('keyup', enableSetRangeBtn);
+window.addEventListener('keyup', function () {
+  enableSetRangeBtn();
+  testIfMaxIsBigger();
+});
 
 clearButton.addEventListener('click', function () {
   clearForm();
@@ -41,7 +49,16 @@ clearButton.addEventListener('click', function () {
 
 window.addEventListener('input', function () {
   enableSubmitButton();
+  disableSubmitButton();
   enableClearButton();
+  displayOutsideRangeError();
+});
+
+resetButton.addEventListener('click', function(){
+  newGame();
+  resetDefaultRange();
+  resetButtonClass(resetButton);
+  // resetButtonClass(updateRangeBtn);
 });
 
 submitButton.addEventListener('click', function () {
@@ -63,13 +80,34 @@ function disableButtons() {
   clearButton.disabled = true;
   submitButton.disabled = true;
   resetButton.disabled = true;
+  updateRangeBtn.disabled = true;
 }
 
 function enableSubmitButton () {
+isWithinRange();
   if (inputs[0].value !== '' && inputs[1].value !== '' && inputs[2].value !== ''
-  && inputs[3].value !== '') {
+  && inputs[3].value !== '' && withinRange == true) {
     submitButton.classList.add('enable');
     submitButton.disabled = false;
+  }
+
+  resetButton.classList.add('enable');
+  resetButton.disabled = false;
+}
+
+function isWithinRange() {
+  if (parseInt(challenger1Guess.value) > parseInt(currentMin.innerText) &&
+  parseInt(challenger2Guess.value) > parseInt(currentMin.innerText) &&
+  parseInt(challenger1Guess.value) < parseInt(currentMax.innerText) &&
+  parseInt(challenger1Guess.value) < parseInt(currentMax.innerText)) {
+    withinRange = true;
+  }
+}
+
+function disableSubmitButton () {
+  if (inputs[0].value == '' || inputs[1].value == '' || inputs[2].value == ''
+  || inputs[3].value == '') {
+    resetButtonClass(submitButton)
   }
 }
 
@@ -135,8 +173,26 @@ function updateRange() {
   if (maxRange.value === '') {
     maxRange.classList.add('error');
   }
+  enableSubmitButton();
+}
 
-  testIfMaxIsBigger();
+function displayOutsideRangeError() {
+  // Put parseInt values as variables to shorten these lines
+  if (parseInt(challenger1Guess.value) > parseInt(currentMax.innerText) ||
+  parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
+    rangeAlerts[0].innerHTML = rangeAlertHTML;
+    challenger1Guess.classList.add('error');
+  } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
+  parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
+    rangeAlerts[1].innerHTML = rangeAlertHTML;
+    challenger2Guess.classList.add('error');
+  } else {
+    rangeAlerts[0].innerHTML = '';
+    rangeAlerts[1].innerHTML = '';
+    challenger1Guess.classList.remove('error');
+    challenger2Guess.classList.remove('error');
+  }
+  var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
 function testIfMaxIsBigger() {
@@ -145,9 +201,13 @@ function testIfMaxIsBigger() {
     var alertMsg = document.getElementById('alert-msg');
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
+    updateRangeBtn.classList.remove('enable');
+    disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
     console.log('Max is bigger than min');
     alertZone.innerHTML = '';
+    updateRangeBtn.disabled = false;
+    updateRange();
   }
 }
 
@@ -170,6 +230,8 @@ function generateGuessHint(currentGuess, hint) {
     hint.innerText = "BOOM!";
   }
 }
+
+
 
 function gameWin() {
   var gameWinner = null;
@@ -219,4 +281,10 @@ function newGame() {
   clearForm();
   resetGuessCounter();
   makeRandomNumber();
+  resetDefaultRange();
 }
+
+function resetDefaultRange() {
+  currentMin.innerText = 1;
+  currentMax.innerText = 100;
+};
