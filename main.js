@@ -58,6 +58,8 @@ resetButton.addEventListener('click', function(){
   newGame();
   resetDefaultRange();
   resetButtonClass(resetButton);
+  resetButtonClass(submitButton);
+  resetButtonClass(clearButton);
   // resetButtonClass(updateRangeBtn);
 });
 
@@ -265,7 +267,6 @@ function gameWin() {
       </section>
     </section>`;
     // Insert win card into container
-    gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   }
 }
 
