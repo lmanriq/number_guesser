@@ -279,6 +279,7 @@ function gameWin() {
     </section>`;
     // winCardCounter++;
     // Insert win card into container
+    gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   }
 }
 
