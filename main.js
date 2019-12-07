@@ -33,9 +33,11 @@ disableButtons();
 makeInitialRandomNumber();
 // Event Listeners
 updateRangeBtn.addEventListener('click', function () {
-  // updateRange();
+  updateRange();
   testIfMaxIsBigger();
   makeRandomNumber();
+  clearForm(rangeForm);
+  resetButtonClass(updateRangeBtn);
 });
 
 window.addEventListener('keyup', function () {
@@ -213,7 +215,7 @@ function testIfMaxIsBigger() {
     console.log('Max is bigger than min');
     alertZone.innerHTML = '';
     updateRangeBtn.disabled = false;
-    updateRange();
+    // updateRange();
   }
 }
 
