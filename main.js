@@ -66,6 +66,7 @@ resetButton.addEventListener('click', function(){
   resetButtonClass(resetButton);
   resetButtonClass(submitButton);
   resetButtonClass(clearButton);
+  resetButtonClass(updateRangeBtn);
   // resetButtonClass(updateRangeBtn);
 });
 
@@ -286,6 +287,7 @@ function resetGuessCounter() {
 
 function newGame() {
   clearForm(guessForm);
+  clearForm(rangeForm);
   // clearForm(guessForm);
   resetGuessCounter();
   makeRandomNumber();
