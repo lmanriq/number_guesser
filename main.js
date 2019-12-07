@@ -8,6 +8,7 @@ var challengerTwo = document.getElementById('challenger2');
 var challenger1Guess = document.getElementById('challenger1-guess');
 var challenger2Guess = document.getElementById('challenger2-guess');
 var guessForm = document.getElementById('guess-form');
+var rangeForm = document.getElementById('range-form');
 var minRange = document.getElementById('min-range');
 var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
@@ -34,9 +35,11 @@ disableButtons();
 makeInitialRandomNumber();
 // Event Listeners
 updateRangeBtn.addEventListener('click', function () {
-  // updateRange();
+  updateRange();
   testIfMaxIsBigger();
   makeRandomNumber();
+  clearForm(rangeForm);
+  resetButtonClass(updateRangeBtn);
 });
 
 window.addEventListener('keyup', function () {
@@ -45,8 +48,11 @@ window.addEventListener('keyup', function () {
 });
 
 clearButton.addEventListener('click', function () {
-  clearForm();
+  clearForm(guessForm);
+  clearForm(rangeForm);
   resetButtonClass(clearButton);
+  resetButtonClass(submitButton);
+  resetButtonClass(updateRangeBtn);
 });
 
 window.addEventListener('input', function () {
@@ -60,6 +66,9 @@ resetButton.addEventListener('click', function(){
   newGame();
   resetDefaultRange();
   resetButtonClass(resetButton);
+  resetButtonClass(submitButton);
+  resetButtonClass(clearButton);
+  resetButtonClass(updateRangeBtn);
   // resetButtonClass(updateRangeBtn);
 });
 
@@ -76,8 +85,8 @@ submitButton.addEventListener('click', function () {
 gameCardContainer.addEventListener('click', removeWinCard);
 
 // Functions
-function clearForm() {
-  guessForm.reset();
+function clearForm(form) {
+  form.reset();
 }
 
 function disableButtons() {
@@ -186,10 +195,12 @@ function displayOutsideRangeError() {
   parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[0].innerHTML = rangeAlertHTML;
     challenger1Guess.classList.add('error');
+    resetButtonClass(submitButton);
   } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
   parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[1].innerHTML = rangeAlertHTML;
     challenger2Guess.classList.add('error');
+    resetButtonClass(submitButton);
   } else {
     rangeAlerts[0].innerHTML = '';
     rangeAlerts[1].innerHTML = '';
@@ -211,7 +222,7 @@ function testIfMaxIsBigger() {
     console.log('Max is bigger than min');
     alertZone.innerHTML = '';
     updateRangeBtn.disabled = false;
-    updateRange();
+    // updateRange();
   }
 }
 
@@ -252,6 +263,7 @@ function gameWin() {
       addWinCard();
       newGame();
     }
+    resetButtonClass(resetButton);
   }
 
   // Create game winning card with players info
@@ -283,7 +295,9 @@ function resetGuessCounter() {
 }
 
 function newGame() {
-  clearForm();
+  clearForm(guessForm);
+  clearForm(rangeForm);
+  // clearForm(guessForm);
   resetGuessCounter();
   makeRandomNumber();
   resetDefaultRange();
