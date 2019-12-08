@@ -284,7 +284,7 @@ fieldset input {
   font-weight: 800;
 }
 
-@media screen and (max-width: 480em) {
+@media screen and (max-width: 480px) {
   .column1,
   .column2 {
     width: 100%;
