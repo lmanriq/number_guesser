@@ -76,11 +76,11 @@ resetButton.addEventListener('click', function(){
 submitButton.addEventListener('click', function () {
   addLatestGuess();
   resetButtonClass(submitButton);
-  resetButtonClass(clearButton);
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
   increaseGuessCount();
   gameWin();
+  enableSubmitButton();
 });
 
 gameCardContainer.addEventListener('click', removeWinCard);
@@ -97,7 +97,7 @@ function disableButtons() {
   updateRangeBtn.disabled = true;
 }
 
-function enableSubmitButton () {
+function enableSubmitButton() {
 isWithinRange();
   if (inputs[0].value !== '' && inputs[1].value !== '' && inputs[2].value !== ''
   && inputs[3].value !== '' && withinRange == true) {
