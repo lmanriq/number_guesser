@@ -28,7 +28,8 @@ var challenger2Hint = document.getElementById('challenger2-hint');
 var guessCounter = 0;
 var withinRange = false;
 var deleteWinCard = document.getElementById('deleteWinCard');
-// var winCardCounter = 0;
+var gameStart = null;
+var gameEnd = null;
 
 // We might eventually want to put this into an on load event listener
 disableButtons();
@@ -75,11 +76,11 @@ resetButton.addEventListener('click', function(){
 submitButton.addEventListener('click', function () {
   addLatestGuess();
   resetButtonClass(submitButton);
-  resetButtonClass(clearButton);
   generateGuessHint(challenger1Guess, challenger1Hint);
   generateGuessHint(challenger2Guess, challenger2Hint);
   increaseGuessCount();
   gameWin();
+  enableSubmitButton();
 });
 
 gameCardContainer.addEventListener('click', removeWinCard);
@@ -96,7 +97,7 @@ function disableButtons() {
   updateRangeBtn.disabled = true;
 }
 
-function enableSubmitButton () {
+function enableSubmitButton() {
 isWithinRange();
   if (inputs[0].value !== '' && inputs[1].value !== '' && inputs[2].value !== ''
   && inputs[3].value !== '' && withinRange == true) {
@@ -226,14 +227,16 @@ function testIfMaxIsBigger() {
   }
 }
 
+function makeInitialRandomNumber() {
+  randomNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+  setTimeStart();
+}
+
 function makeRandomNumber() {
   randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) - parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));
   // Make random number should "restart" the game
   resetGuessCounter();
-}
-
-function makeInitialRandomNumber() {
-  randomNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+  setTimeStart();
 }
 
 function generateGuessHint(currentGuess, hint) {
@@ -245,8 +248,6 @@ function generateGuessHint(currentGuess, hint) {
     hint.innerText = "BOOM!";
   }
 }
-
-
 
 function gameWin() {
   var gameWinner = null;
@@ -268,13 +269,17 @@ function gameWin() {
 
   // Create game winning card with players info
   function addWinCard() {
+    setTimeEnd();
+    var timeDifference = gameEnd - gameStart;
+    var seconds = Math.floor(timeDifference / 1000);
+    var minutes = Math.floor(timeDifference / 60000);
     var winCardHTML = `<section class="game-card">
       <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
       <p class="winner-name">${gameWinner}</p>
       <p class="winner-statement">Winner</p>
       <section class="game-footer">
         <p><span class="guess-number">${totalGuesses}</span> Guesses</p>
-        <p class="time"><span class="minute">1</span> Minute <span class="second">35</span> second</p>
+        <p class="time"><span class="minute">${minutes}</span> Minute <span class="second">${seconds}</span> second</p>
         <div class="btn-wrap">
           <button type="button" name="remove-box"><img class="deleteWinCard" src="assets/close.svg" alt="Close game winning card"></button>
         </div>
@@ -315,4 +320,14 @@ function removeWinCard(event) {
     console.log(clickedCard);
     clickedCard.parentNode.removeChild(clickedCard);
   }
+}
+
+function setTimeStart() {
+  gameStart = performance.now();
+  console.log(gameStart);
+}
+
+function setTimeEnd() {
+  gameEnd = performance.now();
+  console.log(gameEnd);
 }
