@@ -28,6 +28,7 @@ var challenger2Hint = document.getElementById('challenger2-hint');
 var guessCounter = 0;
 var withinRange = false;
 var deleteWinCard = document.getElementById('deleteWinCard');
+var clearWinCardBtn = document.getElementById('clearWinCardBtn');
 var gameStart = null;
 var gameEnd = null;
 
@@ -83,7 +84,12 @@ submitButton.addEventListener('click', function () {
   enableSubmitButton();
 });
 
-gameCardContainer.addEventListener('click', removeWinCard);
+gameCardContainer.addEventListener('click', function(event) {
+  removeWinCard(event);
+  clearWinCards(event);
+});
+
+
 
 // Functions
 function clearForm(form) {
@@ -285,10 +291,13 @@ function gameWin() {
         </div>
       </section>
     </section>`;
-    // winCardCounter++;
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
     widenRange();
+  }
+
+  if (clearWinCardBtn.classList != 'active') {
+    clearWinCardBtn.classList.add('active');
   }
 }
 
@@ -314,21 +323,29 @@ function newGame() {
 //   currentMax.innerText = 100;
 // }
 
-function removeWinCard(event) {
-  var clickedCard = null;
-  if (event.target.classList == 'deleteWinCard') {
-    clickedCard = event.target.closest('.game-card');
-    console.log(clickedCard);
-    clickedCard.parentNode.removeChild(clickedCard);
-  }
-}
 
 function setTimeStart() {
   gameStart = performance.now();
-  console.log(gameStart);
 }
 
 function setTimeEnd() {
   gameEnd = performance.now();
-  console.log(gameEnd);
+}
+
+function removeWinCard(event) {
+  var clickedCard = null;
+  if (event.target.classList == 'deleteWinCard') {
+    clickedCard = event.target.closest('.game-card');
+    clickedCard.parentNode.removeChild(clickedCard);
+  }
+}
+
+function clearWinCards(event) {
+  var gameCards = document.querySelectorAll('.game-card');
+  if (event.target.id === 'clearWinCardBtn') {
+    for (var i = 0; i < gameCards.length; i++) {
+      gameCards[i].remove();
+    }
+    clearWinCardBtn.classList.remove('active');
+  }
 }

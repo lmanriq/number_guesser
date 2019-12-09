@@ -288,6 +288,30 @@ button:hover {
   font-weight: 800;
 }
 
+#wonGamesCol #clearWinCardBtn {
+  display: none;
+  color:#9d9d9d;
+  align-items: center;
+  box-shadow: unset;
+  border: 0px;
+  font-size: 18px;
+  padding:0px;
+  cursor:pointer;
+}
+#wonGamesCol #clearWinCardBtn:hover {
+  background-color:transparent;
+  color:#dd1792;
+}
+
+#wonGamesCol #clearWinCardBtn.active {
+  display:flex;
+}
+
+#wonGamesCol #clearWinCardBtn img {
+  width:14px;
+  margin-right:10px;
+}
+
 @media screen and (max-width: 480px) {
   .column1,
   .column2 {
@@ -379,5 +403,4 @@ button:hover {
     width: 25px;
     height: 25px;
   }
-
 }
