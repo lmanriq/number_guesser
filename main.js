@@ -290,6 +290,10 @@ function addWinCard() {
   // Insert win card into container
   gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   widenRange();
+  // Only add button if a game was won
+  if (clearWinCardBtn.classList != 'active') {
+    clearWinCardBtn.classList.add('active');
+  }
 }
 
 function gameWin() {
@@ -297,11 +301,6 @@ function gameWin() {
   var totalGuesses = null;
   determineWinner(challengerOne, challenger1Guess);
   determineWinner(challengerTwo, challenger2Guess);
-  // Create game winning card with players info
-  // addWinCard();
-  if (clearWinCardBtn.classList != 'active') {
-    clearWinCardBtn.classList.add('active');
-  }
 }
 
 function increaseGuessCount() {
