@@ -274,6 +274,10 @@ fieldset input {
   padding: 7px;
 }
 
+button:hover {
+  background-color: #dd1792;
+}
+
 .enable {
   background-color: #404041;
 }
