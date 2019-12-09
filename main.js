@@ -66,12 +66,10 @@ window.addEventListener('input', function () {
 
 resetButton.addEventListener('click', function(){
   newGame();
-  resetDefaultRange();
   resetButtonClass(resetButton);
   resetButtonClass(submitButton);
   resetButtonClass(clearButton);
   resetButtonClass(updateRangeBtn);
-  // resetButtonClass(updateRangeBtn);
 });
 
 submitButton.addEventListener('click', function () {
@@ -217,20 +215,19 @@ function displayOutsideRangeError() {
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
+//longer than 10
 function testIfMaxIsBigger() {
   if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
+    //we could probably remove this chunk and give it its own function
     alertZone.innerHTML = alertHTML;
     var alertMsg = document.getElementById('alert-msg');
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
-    // updateRangeBtn.classList.remove('enable');
-    resetButtonClass(updateRangeBtn);
+    resetButtonClass(updateRangeBtn)
     disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
-    console.log('Max is bigger than min');
     alertZone.innerHTML = '';
     updateRangeBtn.disabled = false;
-    // updateRange();
   }
 }
 
@@ -261,46 +258,47 @@ function widenRange() {
   currentMax.innerText = parseInt(currentMax.innerText) + 10;
 }
 
+function determineWinner(winnerName, winnerGuess) {
+  if (winnerGuess.value == randomNumber) {
+    gameWinner = winnerName.value;
+    totalGuesses = guessCounter;
+    // Call function to populate winning card
+    addWinCard();
+    newGame();
+  }
+  resetButtonClass(resetButton);
+}
+
+//longer than 10
+function addWinCard() {
+  setTimeEnd();
+  var timeDifference = gameEnd - gameStart;
+  var seconds = Math.floor(timeDifference / 1000);
+  var minutes = Math.floor(timeDifference / 60000);
+  var winCardHTML = `<section class="game-card">
+    <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
+    <p class="winner-name">${gameWinner}</p>
+    <p class="winner-statement">Winner</p>
+    <section class="game-footer">
+      <p><span class="guess-number">${totalGuesses}</span> Guesses</p>
+      <p class="time"><span class="minute">${minutes}</span> Minute <span class="second">${seconds}</span> second</p>
+      <div class="btn-wrap">
+        <button type="button" name="remove-box"><img class="deleteWinCard" src="assets/close.svg" alt="Close game winning card"></button>
+      </div>
+    </section>
+  </section>`;
+  // Insert win card into container
+  gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
+  widenRange();
+}
+
 function gameWin() {
   var gameWinner = null;
   var totalGuesses = null;
-
   determineWinner(challengerOne, challenger1Guess);
   determineWinner(challengerTwo, challenger2Guess);
-
-  function determineWinner(winnerName, winnerGuess) {
-    if (winnerGuess.value == randomNumber) {
-      gameWinner = winnerName.value;
-      totalGuesses = guessCounter;
-      // Call function to populate winning card
-      addWinCard();
-      newGame();
-    }
-    resetButtonClass(resetButton);
-  }
   // Create game winning card with players info
-  function addWinCard() {
-    setTimeEnd();
-    var timeDifference = gameEnd - gameStart;
-    var seconds = Math.floor(timeDifference / 1000);
-    var minutes = Math.floor(timeDifference / 60000);
-    var winCardHTML = `<section class="game-card">
-      <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
-      <p class="winner-name">${gameWinner}</p>
-      <p class="winner-statement">Winner</p>
-      <section class="game-footer">
-        <p><span class="guess-number">${totalGuesses}</span> Guesses</p>
-        <p class="time"><span class="minute">${minutes}</span> Minute <span class="second">${seconds}</span> second</p>
-        <div class="btn-wrap">
-          <button type="button" name="remove-box"><img class="deleteWinCard" src="assets/close.svg" alt="Close game winning card"></button>
-        </div>
-      </section>
-    </section>`;
-    // Insert win card into container
-    gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
-    widenRange();
-  }
-
+  // addWinCard();
   if (clearWinCardBtn.classList != 'active') {
     clearWinCardBtn.classList.add('active');
   }
@@ -327,7 +325,6 @@ function newGame() {
 //   currentMin.innerText = 1;
 //   currentMax.innerText = 100;
 // }
-
 
 function setTimeStart() {
   gameStart = performance.now();
