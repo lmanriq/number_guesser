@@ -166,6 +166,7 @@ function enableSetRangeBtn() {
   }
 }
 
+//Longer than 10 lines
 // Set ranges
 function updateRange() {
   // Validate & set values
@@ -192,24 +193,23 @@ function updateRange() {
   enableSubmitButton();
 }
 
-function displayOutsideRangeError() {
-  // Put parseInt values as variables to shorten these lines
-  if (parseInt(challenger1Guess.value) > parseInt(currentMax.innerText) ||
-  parseInt(challenger1Guess.value) < parseInt(currentMin.innerText)) {
-    rangeAlerts[0].innerHTML = rangeAlertHTML;
-    challenger1Guess.classList.add('error');
-    resetButtonClass(submitButton);
-  } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
-  parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
-    rangeAlerts[1].innerHTML = rangeAlertHTML;
-    challenger2Guess.classList.add('error');
+function checkForError(guess, index) {
+  if (parseInt(guess.value) > parseInt(currentMax.innerText) ||
+  parseInt(guess.value) < parseInt(currentMin.innerText)) {
+    rangeAlerts[index].innerHTML = rangeAlertHTML;
+    guess.classList.add('error');
     resetButtonClass(submitButton);
   } else {
-    rangeAlerts[0].innerHTML = '';
-    rangeAlerts[1].innerHTML = '';
-    challenger1Guess.classList.remove('error');
-    challenger2Guess.classList.remove('error');
+    rangeAlerts[index].innerHTML = '';
+    guess.classList.remove('error');
   }
+}
+
+function displayOutsideRangeError() {
+  // Put parseInt values as variables to shorten these lines
+    checkForError(challenger1Guess, 0);
+    checkForError(challenger2Guess, 1);
+
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
