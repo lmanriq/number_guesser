@@ -287,6 +287,10 @@ button:hover {
   background-color: #dd1792;
 }
 
+button:disabled {
+  background-color:#d0d2d3;
+}
+
 .enable {
   background-color: #404041;
 }

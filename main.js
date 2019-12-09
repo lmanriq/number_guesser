@@ -166,29 +166,35 @@ function enableSetRangeBtn() {
   }
 }
 
-// Set ranges
-function updateRange() {
-  // Validate & set values
+function setMinMax () {
+  challenger1Guess.setAttribute('min', minRange.value);
+  challenger1Guess.setAttribute('max', maxRange.value);
+  challenger2Guess.setAttribute('min', minRange.value);
+  challenger2Guess.setAttribute('max', maxRange.value);
+}
+// Validate & set values
+function validateRange() {
   if (minRange.value !== '' && maxRange.value !== '') {
     // Set ranges to current ranges section
     currentMin.innerText = minRange.value;
     currentMax.innerText = maxRange.value;
-
     // Set min and max values on challenger guess inputs
-    challenger1Guess.setAttribute('min', minRange.value);
-    challenger2Guess.setAttribute('min', minRange.value);
-    challenger1Guess.setAttribute('max', maxRange.value);
-    challenger2Guess.setAttribute('max', maxRange.value);
+    setMinMax();
   }
+}
+// Add error class for styling inputs
+// function addErrorClass() {
+//   if (minRange.value === '') {
+//     minRange.classList.add('error');
+//   }
+//   if (maxRange.value === '') {
+//     maxRange.classList.add('error');
+//   }
+// }
 
-  // Add error class for styling inputs
-  if (minRange.value === '') {
-    minRange.classList.add('error');
-  }
-
-  if (maxRange.value === '') {
-    maxRange.classList.add('error');
-  }
+function updateRange() {
+  validateRange();
+  // addErrorClass();
   enableSubmitButton();
 }
 
@@ -217,7 +223,8 @@ function testIfMaxIsBigger() {
     var alertMsg = document.getElementById('alert-msg');
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
-    updateRangeBtn.classList.remove('enable');
+    // updateRangeBtn.classList.remove('enable');
+    resetButtonClass(updateRangeBtn);
     disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
     console.log('Max is bigger than min');
