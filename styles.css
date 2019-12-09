@@ -84,7 +84,7 @@ main {
 
 .card {
   background-color: #fff;
-  padding: 20px;
+  padding: 25px;
   margin-bottom: 20px;
   border: 2px solid #cecece;
 }
@@ -99,6 +99,13 @@ main {
 
 .error {
   border: 2px solid #dd1972;
+}
+
+#alert-zone,
+#range-alert-msg {
+  font-size:14px;
+  position:absolute;
+  bottom:-20px;
 }
 
 .alert {
@@ -121,6 +128,7 @@ fieldset input {
 }
 .card_range .flex-parent fieldset {
   width: 35%;
+  position:relative;
 }
 
 .card_range .btn {
@@ -161,6 +169,7 @@ fieldset input {
 
 .guess-field {
   width: 32%;
+  position:relative;
 }
 
 .guess-buttons {
