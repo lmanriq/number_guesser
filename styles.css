@@ -298,6 +298,10 @@ button:hover {
   padding:0px;
   cursor:pointer;
 }
+#wonGamesCol #clearWinCardBtn:hover {
+  background-color:transparent;
+  color:#dd1792;
+}
 
 #wonGamesCol #clearWinCardBtn.active {
   display:flex;
