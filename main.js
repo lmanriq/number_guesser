@@ -291,7 +291,6 @@ function gameWin() {
         </div>
       </section>
     </section>`;
-    // winCardCounter++;
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
     widenRange();
@@ -327,19 +326,16 @@ function newGame() {
 
 function setTimeStart() {
   gameStart = performance.now();
-  // console.log(gameStart);
 }
 
 function setTimeEnd() {
   gameEnd = performance.now();
-  // console.log(gameEnd);
 }
 
 function removeWinCard(event) {
   var clickedCard = null;
   if (event.target.classList == 'deleteWinCard') {
     clickedCard = event.target.closest('.game-card');
-    console.log(clickedCard);
     clickedCard.parentNode.removeChild(clickedCard);
   }
 }
