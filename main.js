@@ -221,17 +221,16 @@ function displayOutsideRangeError() {
 //longer than 10
 function testIfMaxIsBigger() {
   if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
+    //we could probably remove this chunk and give it its own function
     alertZone.innerHTML = alertHTML;
     var alertMsg = document.getElementById('alert-msg');
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
-    updateRangeBtn.classList.remove('enable');
+    resetButtonClass(updateRangeBtn)
     disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
-    console.log('Max is bigger than min');
     alertZone.innerHTML = '';
     updateRangeBtn.disabled = false;
-    // updateRange();
   }
 }
 
@@ -273,6 +272,7 @@ function determineWinner(winnerName, winnerGuess) {
   resetButtonClass(resetButton);
 }
 
+//longer than 10
 function addWinCard() {
   setTimeEnd();
   var timeDifference = gameEnd - gameStart;
@@ -328,7 +328,6 @@ function newGame() {
 //   currentMin.innerText = 1;
 //   currentMax.innerText = 100;
 // }
-
 
 function setTimeStart() {
   gameStart = performance.now();
