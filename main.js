@@ -199,17 +199,21 @@ function displayOutsideRangeError() {
     rangeAlerts[0].innerHTML = rangeAlertHTML;
     challenger1Guess.classList.add('error');
     resetButtonClass(submitButton);
-  } else if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
+  } else {
+    rangeAlerts[0].innerHTML = '';
+    challenger1Guess.classList.remove('error');
+  }
+
+  if (parseInt(challenger2Guess.value) > parseInt(currentMax.innerText) ||
   parseInt(challenger2Guess.value) < parseInt(currentMin.innerText)) {
     rangeAlerts[1].innerHTML = rangeAlertHTML;
     challenger2Guess.classList.add('error');
     resetButtonClass(submitButton);
   } else {
-    rangeAlerts[0].innerHTML = '';
     rangeAlerts[1].innerHTML = '';
-    challenger1Guess.classList.remove('error');
     challenger2Guess.classList.remove('error');
   }
+
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
