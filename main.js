@@ -152,10 +152,6 @@ function enableSetRangeBtn() {
 
 // Set ranges
 function updateRange() {
-  // Variables
-  var currentMin = document.getElementById('current-min-range');
-  var currentMax = document.getElementById('current-max-range');
-
   // Validate & set values
   if (minRange.value !== '' && maxRange.value !== '') {
     // Set ranges to current ranges section
@@ -252,6 +248,13 @@ function gameWin() {
       addWinCard();
       newGame();
     }
+
+    widenRange();
+  }
+
+  function widenRange() {
+    currentMin -= 10;
+    currentMax += 10;
   }
 
   // Create game winning card with players info
