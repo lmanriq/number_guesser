@@ -183,17 +183,18 @@ function validateRange() {
   }
 }
 // Add error class for styling inputs
-function addErrorClass() {
-  if (minRange.value === '') {
-    minRange.classList.add('error');
-  }
-  if (maxRange.value === '') {
-    maxRange.classList.add('error');
-  }
-}
+// function addErrorClass() {
+//   if (minRange.value === '') {
+//     minRange.classList.add('error');
+//   }
+//   if (maxRange.value === '') {
+//     maxRange.classList.add('error');
+//   }
+// }
+
 function updateRange() {
   validateRange();
-  addErrorClass();
+  // addErrorClass();
   enableSubmitButton();
 }
 
@@ -222,7 +223,8 @@ function testIfMaxIsBigger() {
     var alertMsg = document.getElementById('alert-msg');
     maxRange.classList.add('error');
     alertMsg.classList.add('alert');
-    updateRangeBtn.classList.remove('enable');
+    // updateRangeBtn.classList.remove('enable');
+    resetButtonClass(updateRangeBtn);
     disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
     console.log('Max is bigger than min');
