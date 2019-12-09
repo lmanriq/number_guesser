@@ -117,7 +117,7 @@ function isWithinRange() {
   if (parseInt(challenger1Guess.value) > parseInt(currentMin.innerText) &&
   parseInt(challenger2Guess.value) > parseInt(currentMin.innerText) &&
   parseInt(challenger1Guess.value) < parseInt(currentMax.innerText) &&
-  parseInt(challenger1Guess.value) < parseInt(currentMax.innerText)) {
+  parseInt(challenger2Guess.value) < parseInt(currentMax.innerText)) {
     withinRange = true;
   }
 }
@@ -166,10 +166,6 @@ function enableSetRangeBtn() {
 
 // Set ranges
 function updateRange() {
-  // Variables
-  var currentMin = document.getElementById('current-min-range');
-  var currentMax = document.getElementById('current-max-range');
-
   // Validate & set values
   if (minRange.value !== '' && maxRange.value !== '') {
     // Set ranges to current ranges section
@@ -253,6 +249,11 @@ function generateGuessHint(currentGuess, hint) {
   }
 }
 
+function widenRange() {
+  currentMin.innerText = parseInt(currentMin.innerText) - 10;
+  currentMax.innerText = parseInt(currentMax.innerText) + 10;
+}
+
 function gameWin() {
   var gameWinner = null;
   var totalGuesses = null;
@@ -270,7 +271,6 @@ function gameWin() {
     }
     resetButtonClass(resetButton);
   }
-
   // Create game winning card with players info
   function addWinCard() {
     setTimeEnd();
@@ -292,6 +292,7 @@ function gameWin() {
     // winCardCounter++;
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
+    widenRange();
   }
 
   if (clearWinCardBtn.classList != 'active') {
@@ -310,16 +311,16 @@ function resetGuessCounter() {
 function newGame() {
   clearForm(guessForm);
   clearForm(rangeForm);
-  // clearForm(guessForm);
+  resetButtonClass(clearButton);
   resetGuessCounter();
   makeRandomNumber();
-  resetDefaultRange();
+  // resetDefaultRange();
 }
 
-function resetDefaultRange() {
-  currentMin.innerText = 1;
-  currentMax.innerText = 100;
-}
+// function resetDefaultRange() {
+//   currentMin.innerText = 1;
+//   currentMax.innerText = 100;
+// }
 
 function removeWinCard(event) {
   var clickedCard = null;
