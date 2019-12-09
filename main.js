@@ -170,7 +170,6 @@ function setMinMax () {
   challenger2Guess.setAttribute('min', minRange.value);
   challenger2Guess.setAttribute('max', maxRange.value);
 }
-
 // Validate & set values
 function validateRange() {
   if (minRange.value !== '' && maxRange.value !== '') {
@@ -181,20 +180,19 @@ function validateRange() {
     setMinMax();
   }
 }
-
 // Add error class for styling inputs
-function addErrorClass() {
-  if (minRange.value === '') {
-    minRange.classList.add('error');
-  }
-  if (maxRange.value === '') {
-    maxRange.classList.add('error');
-  }
-}
+// function addErrorClass() {
+//   if (minRange.value === '') {
+//     minRange.classList.add('error');
+//   }
+//   if (maxRange.value === '') {
+//     maxRange.classList.add('error');
+//   }
+// }
 
 function updateRange() {
   validateRange();
-  addErrorClass();
+  // addErrorClass();
   enableSubmitButton();
 }
 
@@ -212,9 +210,8 @@ function checkForError(guess, index) {
 
 function displayOutsideRangeError() {
   // Put parseInt values as variables to shorten these lines
-    checkForError(challenger1Guess, 0);
-    checkForError(challenger2Guess, 1);
-
+  checkForError(challenger1Guess, 0);
+  checkForError(challenger2Guess, 1);
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
