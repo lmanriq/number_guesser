@@ -70,6 +70,7 @@ resetButton.addEventListener('click', function(){
   resetButtonClass(submitButton);
   resetButtonClass(clearButton);
   resetButtonClass(updateRangeBtn);
+  resetDefaultRange();
 });
 
 submitButton.addEventListener('click', function () {
@@ -321,10 +322,10 @@ function newGame() {
   // resetDefaultRange();
 }
 
-// function resetDefaultRange() {
-//   currentMin.innerText = 1;
-//   currentMax.innerText = 100;
-// }
+function resetDefaultRange() {
+  currentMin.innerText = 1;
+  currentMax.innerText = 100;
+}
 
 function setTimeStart() {
   gameStart = performance.now();
