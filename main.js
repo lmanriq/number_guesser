@@ -13,6 +13,7 @@ var minRange = document.getElementById('min-range');
 var maxRange = document.getElementById('max-range');
 var updateRangeBtn = document.getElementById('update-range');
 var gameCardContainer = document.getElementById('wonGamesCol');
+var gameCards = document.querySelectorAll('.game-card');
 var randomNumber = null;
 var alertZone = document.getElementById('alert-zone');
 var maxFieldset = document.getElementById('max-field');
@@ -28,6 +29,7 @@ var challenger2Hint = document.getElementById('challenger2-hint');
 var guessCounter = 0;
 var withinRange = false;
 var deleteWinCard = document.getElementById('deleteWinCard');
+var clearWinCardBtn = document.getElementById('clearWinCardBtn');
 var gameStart = null;
 var gameEnd = null;
 
@@ -84,6 +86,8 @@ submitButton.addEventListener('click', function () {
 });
 
 gameCardContainer.addEventListener('click', removeWinCard);
+
+
 
 // Functions
 function clearForm(form) {
@@ -289,6 +293,10 @@ function gameWin() {
     // Insert win card into container
     gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   }
+
+  if (clearWinCardBtn.classList != 'active') {
+    clearWinCardBtn.classList.add('active');
+  }
 }
 
 function increaseGuessCount() {
@@ -330,4 +338,11 @@ function setTimeStart() {
 function setTimeEnd() {
   gameEnd = performance.now();
   console.log(gameEnd);
+}
+
+function clearWinCards() {
+  for (var i = 0; i < gameCards.length; i++) {
+    console.log(this)
+    gameCardContainer.removeChild(gameCard);
+  }
 }
