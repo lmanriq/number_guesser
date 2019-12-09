@@ -303,7 +303,7 @@ function resetGuessCounter() {
 function newGame() {
   clearForm(guessForm);
   clearForm(rangeForm);
-  // clearForm(guessForm);
+  resetButtonClass(clearButton);
   resetGuessCounter();
   makeRandomNumber();
   // resetDefaultRange();
