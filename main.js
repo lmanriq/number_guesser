@@ -1,36 +1,36 @@
 // Variables
-var clearButton = document.getElementById('clear-btn');
-var submitButton = document.getElementById('submit-btn');
-var resetButton = document.getElementById('reset-btn')
-var inputs = document.querySelectorAll('.card_guess input');
-var challengerOne = document.getElementById('challenger1');
-var challengerTwo = document.getElementById('challenger2');
+var alertHTML = `<p id="alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
+alert icon">Must be greater than min</p>`;
+var alertZone = document.getElementById('alert-zone');
 var challenger1Guess = document.getElementById('challenger1-guess');
 var challenger2Guess = document.getElementById('challenger2-guess');
-var guessForm = document.getElementById('guess-form');
-var rangeForm = document.getElementById('range-form');
-var minRange = document.getElementById('min-range');
-var maxRange = document.getElementById('max-range');
-var updateRangeBtn = document.getElementById('update-range');
-var gameCardContainer = document.getElementById('wonGamesCol');
-var randomNumber = null;
-var alertZone = document.getElementById('alert-zone');
-var maxFieldset = document.getElementById('max-field');
-var alertHTML = `<p id="alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
-alert icon">Must be greater than min</p>`
-var rangeAlertHTML = `<p id="range-alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
-alert icon">Must be within range</p>`
-var rangeAlerts = document.querySelectorAll('.range-alert');
-var currentMin = document.getElementById('current-min-range');
-var currentMax = document.getElementById('current-max-range');
 var challenger1Hint = document.getElementById('challenger1-hint');
 var challenger2Hint = document.getElementById('challenger2-hint');
-var guessCounter = 0;
-var withinRange = false;
-var deleteWinCard = document.getElementById('deleteWinCard');
+var challengerOne = document.getElementById('challenger1');
+var challengerTwo = document.getElementById('challenger2');
+var clearButton = document.getElementById('clear-btn');
 var clearWinCardBtn = document.getElementById('clearWinCardBtn');
-var gameStart = null;
+var currentMax = document.getElementById('current-max-range');
+var currentMin = document.getElementById('current-min-range');
+var deleteWinCard = document.getElementById('deleteWinCard');
+var gameCardContainer = document.getElementById('wonGamesCol');
 var gameEnd = null;
+var gameStart = null;
+var guessCounter = 0;
+var guessForm = document.getElementById('guess-form');
+var inputs = document.querySelectorAll('.card_guess input');
+var maxFieldset = document.getElementById('max-field');
+var maxRange = document.getElementById('max-range');
+var minRange = document.getElementById('min-range');
+var rangeAlertHTML = `<p id="range-alert-msg" class="alert"><img src="assets/error-icon.svg" alt="error
+alert icon">Must be within range</p>`;
+var rangeAlerts = document.querySelectorAll('.range-alert');
+var randomNumber = null;
+var rangeForm = document.getElementById('range-form');
+var resetButton = document.getElementById('reset-btn');
+var submitButton = document.getElementById('submit-btn');
+var updateRangeBtn = document.getElementById('update-range');
+var withinRange = false;
 
 disableButtons();
 makeInitialRandomNumber();
@@ -228,8 +228,8 @@ function makeInitialRandomNumber() {
 }
 
 function makeRandomNumber() {
-  randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) - parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));
-  // Make random number should "restart" the game
+  randomNumber = Math.floor(Math.random() * (parseInt(currentMax.innerText) -
+  parseInt(currentMin.innerText) + 1) + parseInt(currentMin.innerText));
   resetGuessCounter();
   setTimeStart();
 }
