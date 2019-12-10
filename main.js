@@ -104,8 +104,8 @@ function addLatestGuess() {
 function addWinCard() {
   setTimeEnd();
   var timeDifference = gameEnd - gameStart;
-  var seconds = Math.floor(timeDifference / 1000);
   var minutes = Math.floor(timeDifference / 60000);
+  var seconds = Math.floor(timeDifference / 1000) - (minutes * 60);
   var winCardHTML = `<section class="game-card">
     <p class="game-header"><span class="challenger-vs">${challengerOne.value}</span>vs<span class="challenger-vs">${challengerTwo.value}</span></p>
     <p class="winner-name">${gameWinner}</p>
