@@ -32,9 +32,9 @@ var clearWinCardBtn = document.getElementById('clearWinCardBtn');
 var gameStart = null;
 var gameEnd = null;
 
-// We might eventually want to put this into an on load event listener
 disableButtons();
 makeInitialRandomNumber();
+
 // Event Listeners
 updateRangeBtn.addEventListener('click', function () {
   updateRange();
@@ -87,8 +87,6 @@ gameCardContainer.addEventListener('click', function(event) {
   removeWinCard(event);
   clearWinCards(event);
 });
-
-
 
 // Functions
 function clearForm(form) {
@@ -181,19 +179,9 @@ function validateRange() {
     setMinMax();
   }
 }
-// Add error class for styling inputs
-// function addErrorClass() {
-//   if (minRange.value === '') {
-//     minRange.classList.add('error');
-//   }
-//   if (maxRange.value === '') {
-//     maxRange.classList.add('error');
-//   }
-// }
 
 function updateRange() {
   validateRange();
-  // addErrorClass();
   enableSubmitButton();
 }
 
@@ -216,14 +204,16 @@ function displayOutsideRangeError() {
   var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
-//longer than 10
+function styleAlertMsg() {
+  alertZone.innerHTML = alertHTML;
+  var alertMsg = document.getElementById('alert-msg');
+  maxRange.classList.add('error');
+  alertMsg.classList.add('alert');
+}
+
 function testIfMaxIsBigger() {
   if (parseInt(maxRange.value) <= parseInt(minRange.value)) {
-    //we could probably remove this chunk and give it its own function
-    alertZone.innerHTML = alertHTML;
-    var alertMsg = document.getElementById('alert-msg');
-    maxRange.classList.add('error');
-    alertMsg.classList.add('alert');
+    styleAlertMsg();
     resetButtonClass(updateRangeBtn)
     disableSubmitButton();
   } else if (parseInt(minRange.value) < parseInt(maxRange.value)) {
