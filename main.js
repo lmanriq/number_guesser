@@ -32,15 +32,16 @@ var submitButton = document.getElementById('submit-btn');
 var updateRangeBtn = document.getElementById('update-range');
 var withinRange = false;
 
+//Functions to call on load
 disableButtons();
 makeInitialRandomNumber();
+
 // Event Listeners
-
-
 window.addEventListener('keyup', function () {
   enableSetRangeBtn();
   testIfMaxIsBigger();
 });
+
 window.addEventListener('input', function () {
   enableSubmitButton();
   disableSubmitButton();
@@ -117,7 +118,6 @@ function addWinCard() {
       </div>
     </section>
   </section>`;
-  // Insert win card into container
   gameCardContainer.insertAdjacentHTML('afterbegin', winCardHTML);
   widenRange();
   // Only add button if a game was won
@@ -156,7 +156,6 @@ function determineWinner(winnerName, winnerGuess) {
   if (winnerGuess.value == randomNumber) {
     gameWinner = winnerName.value;
     totalGuesses = guessCounter;
-    // Call function to populate winning card
     addWinCard();
     newGame();
   }
@@ -180,7 +179,6 @@ function disableSubmitButton () {
 function displayOutsideRangeError() {
   checkForError(challenger1Guess, 0);
   checkForError(challenger2Guess, 1);
-  var rangeAlertMsg = document.getElementById('range-alert-msg');
 }
 
 function enableClearButton () {
@@ -193,9 +191,7 @@ function enableClearButton () {
 
 function enableSetRangeBtn() {
   if (minRange.value !== '' && maxRange.value !== '') {
-    // Enable Button
     updateRangeBtn.classList.add('enable');
-    // Remove potential error class
     minRange.classList.remove('error');
     maxRange.classList.remove('error');
   }
@@ -325,10 +321,8 @@ function updateRange() {
 
 function validateRange() {
   if (minRange.value !== '' && maxRange.value !== '') {
-    // Set ranges to current ranges section
     currentMin.innerText = minRange.value;
     currentMax.innerText = maxRange.value;
-    // Set min and max values on challenger guess inputs
     setMinMax();
   }
 }
