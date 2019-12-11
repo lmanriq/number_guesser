@@ -7,12 +7,12 @@ App Description
 
 Our Finished App  
 
-![](assets/screenshot.jpg)  
+![Our Screenshot](assets/screenshot.jpg)  
 
 Comp  
 
-![](assets/zero-state.jpg)
-![](assets/winner-cards.jpg)   
+![Comp1](assets/zero-state.jpg)
+![Comp2](assets/winner-cards.jpg)   
 
 DTR  
 
